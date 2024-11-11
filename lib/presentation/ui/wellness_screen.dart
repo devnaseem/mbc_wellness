@@ -25,11 +25,14 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
     final wellnessValue = ref
         .watch(wellnessViewModelProvider.select((state) => state.wellnessList));
 
-    return Scaffold(
-      body: wellnessValue.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        data: (wellnessList) => WellnessListWidget(wellnessList: wellnessList),
-        error: (error, stackTrace) => Text(error.toString()),
+    return SafeArea(
+      child: Scaffold(
+        body:
+           wellnessValue.when(
+           loading: () => const Center(child: CircularProgressIndicator()),
+           data: (wellnessList) => WellnessListWidget(wellnessList: wellnessList),
+           error: (error, stackTrace) => Text(error.toString()),
+        ),
       ),
     );
   }
