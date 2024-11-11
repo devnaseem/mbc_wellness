@@ -1,0 +1,72 @@
+import 'dart:isolate';
+
+import 'package:mbc_common/mbc_common.dart';
+import 'package:mbc_wellness/data/api/wellness_api.dart';
+import 'package:mbc_wellness/data/dto/wellness_list_response.dart';
+import 'package:mbc_wellness/data/repository/iwelness_repository.dart';
+import 'package:mbc_wellness/domain/model/wellness_item_model.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'wellness_repository_impl.g.dart';
+
+@Riverpod(keepAlive: true)
+WellnessRepositoryImpl wellnessRepositoryImpl(WellnessRepositoryImplRef ref) {
+  final wellnessApiService = ref.watch(wellnessApiProvider);
+  return WellnessRepositoryImpl(wellnessApiService);
+}
+
+class WellnessRepositoryImpl
+    with DioExceptionMixin
+    implements IWellnessRepository {
+  final WellnessApi _wellnessApiService;
+  WellnessRepositoryImpl(this._wellnessApiService);
+
+  @override
+  Future<List<WellnessItemModel>> getWellnessStatusList(
+    String clientId,
+    String startDate,
+    String endDate,
+  ) async {
+    final wellnessListResponse = await callApi<WellnessListResponse>(
+        () => _wellnessApiService.getWellnessStatusList(
+              startDate,
+              endDate,
+              clientId,
+            ));
+    final wellnessList = await Isolate.run(
+      () => _mapToWellnessModel(
+        wellnessListResponse.result[0].notes,
+      ),
+    );
+    return wellnessList;
+  }
+
+  List<WellnessItemModel> _mapToWellnessModel(
+    List<Note> data,
+  ) {
+    final result = data
+        .map(
+          (e) => WellnessItemModel(
+            createdTime: e.createdTime,
+            noteDescription: e.noteDescription,
+            noteType: e.noteType,
+            careGiver: CareGiverModel(
+              careGiverId: e.careGiver.careGiverId,
+              branchPhone: e.careGiver.branchPhone,
+              branchEmail: e.careGiver.branchEmail,
+              firstName: e.careGiver.firstName,
+              lastNameInitial: e.careGiver.lastNameInitial,
+              designation: e.careGiver.designation,
+              jobTitle: e.careGiver.jobTitle,
+              photo: PhotoModel(link: e.careGiver.photo.link),
+              languages: e.careGiver.languages
+                  .map((e) => LanguageModel(displayName: e.displayName))
+                  .toList(),
+            ),
+            procuraVisitId: e.procuraVisitId,
+          ),
+        )
+        .toList();
+
+    return result;
+  }
+}

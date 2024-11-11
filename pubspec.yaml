@@ -1,0 +1,45 @@
+name: mbc_wellness
+description: "A new Flutter project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mbc_common:
+    git:
+      url: https://github.com/devnaseem/mbc_common.git
+      ref: e6bad3c58930b409dcf2370cb59cf6fbb5651f92
+  mbc_core:
+    git:
+      url: https://github.com/devnaseem/mbc_core.git
+      ref: 6e1fd47ff813142a41572d1850a178a4ff6db2d2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.11
+  envied_generator: ^0.5.4+1
+  retrofit_generator: '>=8.1.2'
+  json_serializable: '^6.8.0'
+  freezed: ^2.5.7
+  riverpod_generator: ^2.4.2
+  riverpod_lint: ^2.3.12
+  custom_lint: ^0.6.4
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+dependency_overrides:
+  meta: 1.15.0
+
+
+flutter:
+  uses-material-design: true
