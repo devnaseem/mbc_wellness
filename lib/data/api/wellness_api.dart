@@ -20,7 +20,7 @@ abstract class WellnessApi {
   factory WellnessApi(Dio dio) => _WellnessApi(dio);
 
   @GET('/clients/{clientId}/wellnessStatus')
-  Future<WellnessListResponse> getWellnessStatusList(
+  Future<List<WellnessListResponse>> getWellnessStatusList(
     @Query('startDate') String startDate,
     @Query('endDate') String endDate,
     @Path('clientId') String clientId,

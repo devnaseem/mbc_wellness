@@ -9,36 +9,28 @@ part of 'wellness_list_response.dart';
 _$WellnessListResponseImpl _$$WellnessListResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$WellnessListResponseImpl(
-      result: (json['result'] as List<dynamic>)
-          .map((e) => Result.fromJson(e as Map<String, dynamic>))
+      notes: (json['notes'] as List<dynamic>)
+          .map((e) => Note.fromJson(e as Map<String, dynamic>))
           .toList(),
-      statusCode: (json['statusCode'] as num).toInt(),
-      success: json['success'] as bool,
-      message: json['message'],
+      system: json['system'] as String,
     );
 
 Map<String, dynamic> _$$WellnessListResponseImplToJson(
         _$WellnessListResponseImpl instance) =>
     <String, dynamic>{
-      'result': instance.result,
-      'statusCode': instance.statusCode,
-      'success': instance.success,
-      'message': instance.message,
+      'notes': instance.notes,
+      'system': instance.system,
     };
 
 _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       notes: (json['notes'] as List<dynamic>)
           .map((e) => Note.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalElements: (json['totalElements'] as num).toInt(),
-      totalPages: (json['totalPages'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
     <String, dynamic>{
       'notes': instance.notes,
-      'totalElements': instance.totalElements,
-      'totalPages': instance.totalPages,
     };
 
 _$NoteImpl _$$NoteImplFromJson(Map<String, dynamic> json) => _$NoteImpl(
@@ -60,17 +52,19 @@ Map<String, dynamic> _$$NoteImplToJson(_$NoteImpl instance) =>
 
 _$CareGiverImpl _$$CareGiverImplFromJson(Map<String, dynamic> json) =>
     _$CareGiverImpl(
-      careGiverId: json['careGiverId'],
-      branchPhone: json['branchPhone'],
-      branchEmail: json['branchEmail'],
-      firstName: json['firstName'] as String,
-      lastNameInitial: json['lastNameInitial'] as String,
-      designation: json['designation'],
-      jobTitle: json['jobTitle'],
+      careGiverId: json['careGiverId'] as String? ?? "",
+      branchPhone: json['branchPhone'] as String? ?? "",
+      branchEmail: json['branchEmail'] as String? ?? "",
+      firstName: json['firstName'] as String? ?? "",
+      lastNameInitial: json['lastNameInitial'] as String? ?? "",
+      designation: json['designation'] as String? ?? "",
+      jobTitle: json['jobTitle'] as String? ?? "",
       photo: Photo.fromJson(Map<String, String>.from(json['photo'] as Map)),
-      languages: (json['languages'] as List<dynamic>)
-          .map((e) => Language.fromJson(Map<String, String>.from(e as Map)))
-          .toList(),
+      languages: (json['languages'] as List<dynamic>?)
+              ?.map(
+                  (e) => Language.fromJson(Map<String, String>.from(e as Map)))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CareGiverImplToJson(_$CareGiverImpl instance) =>
@@ -87,7 +81,7 @@ Map<String, dynamic> _$$CareGiverImplToJson(_$CareGiverImpl instance) =>
     };
 
 _$PhotoImpl _$$PhotoImplFromJson(Map<String, dynamic> json) => _$PhotoImpl(
-      link: json['link'] as String,
+      link: json['link'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$PhotoImplToJson(_$PhotoImpl instance) =>
@@ -97,7 +91,7 @@ Map<String, dynamic> _$$PhotoImplToJson(_$PhotoImpl instance) =>
 
 _$LanguageImpl _$$LanguageImplFromJson(Map<String, dynamic> json) =>
     _$LanguageImpl(
-      displayName: json['displayName'] as String,
+      displayName: json['displayName'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$LanguageImplToJson(_$LanguageImpl instance) =>

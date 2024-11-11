@@ -20,14 +20,8 @@ WellnessListResponse _$WellnessListResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WellnessListResponse {
-  @JsonKey(name: "result")
-  List<Result> get result => throw _privateConstructorUsedError;
-  @JsonKey(name: "statusCode")
-  int get statusCode => throw _privateConstructorUsedError;
-  @JsonKey(name: "success")
-  bool get success => throw _privateConstructorUsedError;
-  @JsonKey(name: "message")
-  dynamic get message => throw _privateConstructorUsedError;
+  List<Note> get notes => throw _privateConstructorUsedError;
+  String get system => throw _privateConstructorUsedError;
 
   /// Serializes this WellnessListResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,11 +39,7 @@ abstract class $WellnessListResponseCopyWith<$Res> {
           $Res Function(WellnessListResponse) then) =
       _$WellnessListResponseCopyWithImpl<$Res, WellnessListResponse>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "result") List<Result> result,
-      @JsonKey(name: "statusCode") int statusCode,
-      @JsonKey(name: "success") bool success,
-      @JsonKey(name: "message") dynamic message});
+  $Res call({List<Note> notes, String system});
 }
 
 /// @nodoc
@@ -68,28 +58,18 @@ class _$WellnessListResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? result = null,
-    Object? statusCode = null,
-    Object? success = null,
-    Object? message = freezed,
+    Object? notes = null,
+    Object? system = null,
   }) {
     return _then(_value.copyWith(
-      result: null == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as List<Result>,
-      statusCode: null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      notes: null == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<Note>,
+      system: null == system
+          ? _value.system
+          : system // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -102,11 +82,7 @@ abstract class _$$WellnessListResponseImplCopyWith<$Res>
       __$$WellnessListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "result") List<Result> result,
-      @JsonKey(name: "statusCode") int statusCode,
-      @JsonKey(name: "success") bool success,
-      @JsonKey(name: "message") dynamic message});
+  $Res call({List<Note> notes, String system});
 }
 
 /// @nodoc
@@ -122,28 +98,18 @@ class __$$WellnessListResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? result = null,
-    Object? statusCode = null,
-    Object? success = null,
-    Object? message = freezed,
+    Object? notes = null,
+    Object? system = null,
   }) {
     return _then(_$WellnessListResponseImpl(
-      result: null == result
-          ? _value._result
-          : result // ignore: cast_nullable_to_non_nullable
-              as List<Result>,
-      statusCode: null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      notes: null == notes
+          ? _value._notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as List<Note>,
+      system: null == system
+          ? _value.system
+          : system // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -152,37 +118,26 @@ class __$$WellnessListResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WellnessListResponseImpl implements _WellnessListResponse {
   const _$WellnessListResponseImpl(
-      {@JsonKey(name: "result") required final List<Result> result,
-      @JsonKey(name: "statusCode") required this.statusCode,
-      @JsonKey(name: "success") required this.success,
-      @JsonKey(name: "message") required this.message})
-      : _result = result;
+      {required final List<Note> notes, required this.system})
+      : _notes = notes;
 
   factory _$WellnessListResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WellnessListResponseImplFromJson(json);
 
-  final List<Result> _result;
+  final List<Note> _notes;
   @override
-  @JsonKey(name: "result")
-  List<Result> get result {
-    if (_result is EqualUnmodifiableListView) return _result;
+  List<Note> get notes {
+    if (_notes is EqualUnmodifiableListView) return _notes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_result);
+    return EqualUnmodifiableListView(_notes);
   }
 
   @override
-  @JsonKey(name: "statusCode")
-  final int statusCode;
-  @override
-  @JsonKey(name: "success")
-  final bool success;
-  @override
-  @JsonKey(name: "message")
-  final dynamic message;
+  final String system;
 
   @override
   String toString() {
-    return 'WellnessListResponse(result: $result, statusCode: $statusCode, success: $success, message: $message)';
+    return 'WellnessListResponse(notes: $notes, system: $system)';
   }
 
   @override
@@ -190,21 +145,14 @@ class _$WellnessListResponseImpl implements _WellnessListResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WellnessListResponseImpl &&
-            const DeepCollectionEquality().equals(other._result, _result) &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode) &&
-            (identical(other.success, success) || other.success == success) &&
-            const DeepCollectionEquality().equals(other.message, message));
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
+            (identical(other.system, system) || other.system == system));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_result),
-      statusCode,
-      success,
-      const DeepCollectionEquality().hash(message));
+      runtimeType, const DeepCollectionEquality().hash(_notes), system);
 
   /// Create a copy of WellnessListResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -226,27 +174,16 @@ class _$WellnessListResponseImpl implements _WellnessListResponse {
 
 abstract class _WellnessListResponse implements WellnessListResponse {
   const factory _WellnessListResponse(
-          {@JsonKey(name: "result") required final List<Result> result,
-          @JsonKey(name: "statusCode") required final int statusCode,
-          @JsonKey(name: "success") required final bool success,
-          @JsonKey(name: "message") required final dynamic message}) =
-      _$WellnessListResponseImpl;
+      {required final List<Note> notes,
+      required final String system}) = _$WellnessListResponseImpl;
 
   factory _WellnessListResponse.fromJson(Map<String, dynamic> json) =
       _$WellnessListResponseImpl.fromJson;
 
   @override
-  @JsonKey(name: "result")
-  List<Result> get result;
+  List<Note> get notes;
   @override
-  @JsonKey(name: "statusCode")
-  int get statusCode;
-  @override
-  @JsonKey(name: "success")
-  bool get success;
-  @override
-  @JsonKey(name: "message")
-  dynamic get message;
+  String get system;
 
   /// Create a copy of WellnessListResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -264,10 +201,6 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 mixin _$Result {
   @JsonKey(name: "notes")
   List<Note> get notes => throw _privateConstructorUsedError;
-  @JsonKey(name: "totalElements")
-  int get totalElements => throw _privateConstructorUsedError;
-  @JsonKey(name: "totalPages")
-  int get totalPages => throw _privateConstructorUsedError;
 
   /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -283,10 +216,7 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res, Result>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "notes") List<Note> notes,
-      @JsonKey(name: "totalElements") int totalElements,
-      @JsonKey(name: "totalPages") int totalPages});
+  $Res call({@JsonKey(name: "notes") List<Note> notes});
 }
 
 /// @nodoc
@@ -305,22 +235,12 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   @override
   $Res call({
     Object? notes = null,
-    Object? totalElements = null,
-    Object? totalPages = null,
   }) {
     return _then(_value.copyWith(
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
-      totalElements: null == totalElements
-          ? _value.totalElements
-          : totalElements // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -332,10 +252,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$$ResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "notes") List<Note> notes,
-      @JsonKey(name: "totalElements") int totalElements,
-      @JsonKey(name: "totalPages") int totalPages});
+  $Res call({@JsonKey(name: "notes") List<Note> notes});
 }
 
 /// @nodoc
@@ -352,22 +269,12 @@ class __$$ResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? notes = null,
-    Object? totalElements = null,
-    Object? totalPages = null,
   }) {
     return _then(_$ResultImpl(
       notes: null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
-      totalElements: null == totalElements
-          ? _value.totalElements
-          : totalElements // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -375,10 +282,7 @@ class __$$ResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResultImpl implements _Result {
-  const _$ResultImpl(
-      {@JsonKey(name: "notes") required final List<Note> notes,
-      @JsonKey(name: "totalElements") required this.totalElements,
-      @JsonKey(name: "totalPages") required this.totalPages})
+  const _$ResultImpl({@JsonKey(name: "notes") required final List<Note> notes})
       : _notes = notes;
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -394,15 +298,8 @@ class _$ResultImpl implements _Result {
   }
 
   @override
-  @JsonKey(name: "totalElements")
-  final int totalElements;
-  @override
-  @JsonKey(name: "totalPages")
-  final int totalPages;
-
-  @override
   String toString() {
-    return 'Result(notes: $notes, totalElements: $totalElements, totalPages: $totalPages)';
+    return 'Result(notes: $notes)';
   }
 
   @override
@@ -410,17 +307,13 @@ class _$ResultImpl implements _Result {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResultImpl &&
-            const DeepCollectionEquality().equals(other._notes, _notes) &&
-            (identical(other.totalElements, totalElements) ||
-                other.totalElements == totalElements) &&
-            (identical(other.totalPages, totalPages) ||
-                other.totalPages == totalPages));
+            const DeepCollectionEquality().equals(other._notes, _notes));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_notes), totalElements, totalPages);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notes));
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -440,22 +333,13 @@ class _$ResultImpl implements _Result {
 
 abstract class _Result implements Result {
   const factory _Result(
-          {@JsonKey(name: "notes") required final List<Note> notes,
-          @JsonKey(name: "totalElements") required final int totalElements,
-          @JsonKey(name: "totalPages") required final int totalPages}) =
-      _$ResultImpl;
+      {@JsonKey(name: "notes") required final List<Note> notes}) = _$ResultImpl;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
   @override
   @JsonKey(name: "notes")
   List<Note> get notes;
-  @override
-  @JsonKey(name: "totalElements")
-  int get totalElements;
-  @override
-  @JsonKey(name: "totalPages")
-  int get totalPages;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -737,19 +621,19 @@ CareGiver _$CareGiverFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CareGiver {
   @JsonKey(name: "careGiverId")
-  dynamic get careGiverId => throw _privateConstructorUsedError;
+  String get careGiverId => throw _privateConstructorUsedError;
   @JsonKey(name: "branchPhone")
-  dynamic get branchPhone => throw _privateConstructorUsedError;
+  String get branchPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "branchEmail")
-  dynamic get branchEmail => throw _privateConstructorUsedError;
+  String get branchEmail => throw _privateConstructorUsedError;
   @JsonKey(name: "firstName")
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: "lastNameInitial")
   String get lastNameInitial => throw _privateConstructorUsedError;
   @JsonKey(name: "designation")
-  dynamic get designation => throw _privateConstructorUsedError;
+  String get designation => throw _privateConstructorUsedError;
   @JsonKey(name: "jobTitle")
-  dynamic get jobTitle => throw _privateConstructorUsedError;
+  String get jobTitle => throw _privateConstructorUsedError;
   @JsonKey(name: "photo")
   Photo get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "languages")
@@ -771,13 +655,13 @@ abstract class $CareGiverCopyWith<$Res> {
       _$CareGiverCopyWithImpl<$Res, CareGiver>;
   @useResult
   $Res call(
-      {@JsonKey(name: "careGiverId") dynamic careGiverId,
-      @JsonKey(name: "branchPhone") dynamic branchPhone,
-      @JsonKey(name: "branchEmail") dynamic branchEmail,
+      {@JsonKey(name: "careGiverId") String careGiverId,
+      @JsonKey(name: "branchPhone") String branchPhone,
+      @JsonKey(name: "branchEmail") String branchEmail,
       @JsonKey(name: "firstName") String firstName,
       @JsonKey(name: "lastNameInitial") String lastNameInitial,
-      @JsonKey(name: "designation") dynamic designation,
-      @JsonKey(name: "jobTitle") dynamic jobTitle,
+      @JsonKey(name: "designation") String designation,
+      @JsonKey(name: "jobTitle") String jobTitle,
       @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "languages") List<Language> languages});
 
@@ -799,29 +683,29 @@ class _$CareGiverCopyWithImpl<$Res, $Val extends CareGiver>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = freezed,
-    Object? branchPhone = freezed,
-    Object? branchEmail = freezed,
+    Object? careGiverId = null,
+    Object? branchPhone = null,
+    Object? branchEmail = null,
     Object? firstName = null,
     Object? lastNameInitial = null,
-    Object? designation = freezed,
-    Object? jobTitle = freezed,
+    Object? designation = null,
+    Object? jobTitle = null,
     Object? photo = null,
     Object? languages = null,
   }) {
     return _then(_value.copyWith(
-      careGiverId: freezed == careGiverId
+      careGiverId: null == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchPhone: freezed == branchPhone
+              as String,
+      branchPhone: null == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchEmail: freezed == branchEmail
+              as String,
+      branchEmail: null == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -830,14 +714,14 @@ class _$CareGiverCopyWithImpl<$Res, $Val extends CareGiver>
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
               as String,
-      designation: freezed == designation
+      designation: null == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      jobTitle: freezed == jobTitle
+              as String,
+      jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -869,13 +753,13 @@ abstract class _$$CareGiverImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "careGiverId") dynamic careGiverId,
-      @JsonKey(name: "branchPhone") dynamic branchPhone,
-      @JsonKey(name: "branchEmail") dynamic branchEmail,
+      {@JsonKey(name: "careGiverId") String careGiverId,
+      @JsonKey(name: "branchPhone") String branchPhone,
+      @JsonKey(name: "branchEmail") String branchEmail,
       @JsonKey(name: "firstName") String firstName,
       @JsonKey(name: "lastNameInitial") String lastNameInitial,
-      @JsonKey(name: "designation") dynamic designation,
-      @JsonKey(name: "jobTitle") dynamic jobTitle,
+      @JsonKey(name: "designation") String designation,
+      @JsonKey(name: "jobTitle") String jobTitle,
       @JsonKey(name: "photo") Photo photo,
       @JsonKey(name: "languages") List<Language> languages});
 
@@ -896,29 +780,29 @@ class __$$CareGiverImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = freezed,
-    Object? branchPhone = freezed,
-    Object? branchEmail = freezed,
+    Object? careGiverId = null,
+    Object? branchPhone = null,
+    Object? branchEmail = null,
     Object? firstName = null,
     Object? lastNameInitial = null,
-    Object? designation = freezed,
-    Object? jobTitle = freezed,
+    Object? designation = null,
+    Object? jobTitle = null,
     Object? photo = null,
     Object? languages = null,
   }) {
     return _then(_$CareGiverImpl(
-      careGiverId: freezed == careGiverId
+      careGiverId: null == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchPhone: freezed == branchPhone
+              as String,
+      branchPhone: null == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchEmail: freezed == branchEmail
+              as String,
+      branchEmail: null == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -927,14 +811,14 @@ class __$$CareGiverImplCopyWithImpl<$Res>
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
               as String,
-      designation: freezed == designation
+      designation: null == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      jobTitle: freezed == jobTitle
+              as String,
+      jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -951,15 +835,15 @@ class __$$CareGiverImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CareGiverImpl implements _CareGiver {
   const _$CareGiverImpl(
-      {@JsonKey(name: "careGiverId") required this.careGiverId,
-      @JsonKey(name: "branchPhone") required this.branchPhone,
-      @JsonKey(name: "branchEmail") required this.branchEmail,
-      @JsonKey(name: "firstName") required this.firstName,
-      @JsonKey(name: "lastNameInitial") required this.lastNameInitial,
-      @JsonKey(name: "designation") required this.designation,
-      @JsonKey(name: "jobTitle") required this.jobTitle,
+      {@JsonKey(name: "careGiverId") this.careGiverId = "",
+      @JsonKey(name: "branchPhone") this.branchPhone = "",
+      @JsonKey(name: "branchEmail") this.branchEmail = "",
+      @JsonKey(name: "firstName") this.firstName = "",
+      @JsonKey(name: "lastNameInitial") this.lastNameInitial = "",
+      @JsonKey(name: "designation") this.designation = "",
+      @JsonKey(name: "jobTitle") this.jobTitle = "",
       @JsonKey(name: "photo") required this.photo,
-      @JsonKey(name: "languages") required final List<Language> languages})
+      @JsonKey(name: "languages") final List<Language> languages = const []})
       : _languages = languages;
 
   factory _$CareGiverImpl.fromJson(Map<String, dynamic> json) =>
@@ -967,13 +851,13 @@ class _$CareGiverImpl implements _CareGiver {
 
   @override
   @JsonKey(name: "careGiverId")
-  final dynamic careGiverId;
+  final String careGiverId;
   @override
   @JsonKey(name: "branchPhone")
-  final dynamic branchPhone;
+  final String branchPhone;
   @override
   @JsonKey(name: "branchEmail")
-  final dynamic branchEmail;
+  final String branchEmail;
   @override
   @JsonKey(name: "firstName")
   final String firstName;
@@ -982,10 +866,10 @@ class _$CareGiverImpl implements _CareGiver {
   final String lastNameInitial;
   @override
   @JsonKey(name: "designation")
-  final dynamic designation;
+  final String designation;
   @override
   @JsonKey(name: "jobTitle")
-  final dynamic jobTitle;
+  final String jobTitle;
   @override
   @JsonKey(name: "photo")
   final Photo photo;
@@ -1008,19 +892,20 @@ class _$CareGiverImpl implements _CareGiver {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CareGiverImpl &&
-            const DeepCollectionEquality()
-                .equals(other.careGiverId, careGiverId) &&
-            const DeepCollectionEquality()
-                .equals(other.branchPhone, branchPhone) &&
-            const DeepCollectionEquality()
-                .equals(other.branchEmail, branchEmail) &&
+            (identical(other.careGiverId, careGiverId) ||
+                other.careGiverId == careGiverId) &&
+            (identical(other.branchPhone, branchPhone) ||
+                other.branchPhone == branchPhone) &&
+            (identical(other.branchEmail, branchEmail) ||
+                other.branchEmail == branchEmail) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastNameInitial, lastNameInitial) ||
                 other.lastNameInitial == lastNameInitial) &&
-            const DeepCollectionEquality()
-                .equals(other.designation, designation) &&
-            const DeepCollectionEquality().equals(other.jobTitle, jobTitle) &&
+            (identical(other.designation, designation) ||
+                other.designation == designation) &&
+            (identical(other.jobTitle, jobTitle) ||
+                other.jobTitle == jobTitle) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             const DeepCollectionEquality()
                 .equals(other._languages, _languages));
@@ -1030,13 +915,13 @@ class _$CareGiverImpl implements _CareGiver {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(careGiverId),
-      const DeepCollectionEquality().hash(branchPhone),
-      const DeepCollectionEquality().hash(branchEmail),
+      careGiverId,
+      branchPhone,
+      branchEmail,
       firstName,
       lastNameInitial,
-      const DeepCollectionEquality().hash(designation),
-      const DeepCollectionEquality().hash(jobTitle),
+      designation,
+      jobTitle,
       photo,
       const DeepCollectionEquality().hash(_languages));
 
@@ -1058,29 +943,29 @@ class _$CareGiverImpl implements _CareGiver {
 
 abstract class _CareGiver implements CareGiver {
   const factory _CareGiver(
-      {@JsonKey(name: "careGiverId") required final dynamic careGiverId,
-      @JsonKey(name: "branchPhone") required final dynamic branchPhone,
-      @JsonKey(name: "branchEmail") required final dynamic branchEmail,
-      @JsonKey(name: "firstName") required final String firstName,
-      @JsonKey(name: "lastNameInitial") required final String lastNameInitial,
-      @JsonKey(name: "designation") required final dynamic designation,
-      @JsonKey(name: "jobTitle") required final dynamic jobTitle,
-      @JsonKey(name: "photo") required final Photo photo,
-      @JsonKey(name: "languages")
-      required final List<Language> languages}) = _$CareGiverImpl;
+          {@JsonKey(name: "careGiverId") final String careGiverId,
+          @JsonKey(name: "branchPhone") final String branchPhone,
+          @JsonKey(name: "branchEmail") final String branchEmail,
+          @JsonKey(name: "firstName") final String firstName,
+          @JsonKey(name: "lastNameInitial") final String lastNameInitial,
+          @JsonKey(name: "designation") final String designation,
+          @JsonKey(name: "jobTitle") final String jobTitle,
+          @JsonKey(name: "photo") required final Photo photo,
+          @JsonKey(name: "languages") final List<Language> languages}) =
+      _$CareGiverImpl;
 
   factory _CareGiver.fromJson(Map<String, dynamic> json) =
       _$CareGiverImpl.fromJson;
 
   @override
   @JsonKey(name: "careGiverId")
-  dynamic get careGiverId;
+  String get careGiverId;
   @override
   @JsonKey(name: "branchPhone")
-  dynamic get branchPhone;
+  String get branchPhone;
   @override
   @JsonKey(name: "branchEmail")
-  dynamic get branchEmail;
+  String get branchEmail;
   @override
   @JsonKey(name: "firstName")
   String get firstName;
@@ -1089,10 +974,10 @@ abstract class _CareGiver implements CareGiver {
   String get lastNameInitial;
   @override
   @JsonKey(name: "designation")
-  dynamic get designation;
+  String get designation;
   @override
   @JsonKey(name: "jobTitle")
-  dynamic get jobTitle;
+  String get jobTitle;
   @override
   @JsonKey(name: "photo")
   Photo get photo;
@@ -1197,7 +1082,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PhotoImpl implements _Photo {
-  const _$PhotoImpl({@JsonKey(name: "link") required this.link});
+  const _$PhotoImpl({@JsonKey(name: "link") this.link = ""});
 
   factory _$PhotoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoImplFromJson(json);
@@ -1240,7 +1125,7 @@ class _$PhotoImpl implements _Photo {
 }
 
 abstract class _Photo implements Photo {
-  const factory _Photo({@JsonKey(name: "link") required final String link}) =
+  const factory _Photo({@JsonKey(name: "link") final String link}) =
       _$PhotoImpl;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$PhotoImpl.fromJson;
@@ -1348,8 +1233,7 @@ class __$$LanguageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LanguageImpl implements _Language {
-  const _$LanguageImpl(
-      {@JsonKey(name: "displayName") required this.displayName});
+  const _$LanguageImpl({@JsonKey(name: "displayName") this.displayName = ""});
 
   factory _$LanguageImpl.fromJson(Map<String, dynamic> json) =>
       _$$LanguageImplFromJson(json);
@@ -1394,7 +1278,7 @@ class _$LanguageImpl implements _Language {
 
 abstract class _Language implements Language {
   const factory _Language(
-          {@JsonKey(name: "displayName") required final String displayName}) =
+          {@JsonKey(name: "displayName") final String displayName}) =
       _$LanguageImpl;
 
   factory _Language.fromJson(Map<String, dynamic> json) =

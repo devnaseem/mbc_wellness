@@ -7,22 +7,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'wellness_list_response.freezed.dart';
 part 'wellness_list_response.g.dart';
 
-WellnessListResponse deserializeWellnessListResponse(
-        Map<String, dynamic> json) =>
-    WellnessListResponse.fromJson(json);
 
-Map<String, dynamic> serializeWellnessListResponse(
-  WellnessListResponse wellnessListResponse,
-) =>
-    wellnessListResponse.toJson();
+List<WellnessListResponse> deserializeWellnessListResponseList(List<Map<String, dynamic>> json) =>
+    json.map((e) => WellnessListResponse.fromJson(e)).toList();
+
+List<Map<String, dynamic>> serializeWellnessListResponseList(List<WellnessListResponse> objects) =>
+    objects.map((e) => e.toJson()).toList();
 
 @freezed
 class WellnessListResponse with _$WellnessListResponse {
   const factory WellnessListResponse({
-    @JsonKey(name: "result") required List<Result> result,
-    @JsonKey(name: "statusCode") required int statusCode,
-    @JsonKey(name: "success") required bool success,
-    @JsonKey(name: "message") required dynamic message,
+    required List<Note> notes,
+    required String system,
   }) = _WellnessListResponse;
 
   factory WellnessListResponse.fromJson(Map<String, dynamic> json) =>
@@ -33,8 +29,6 @@ class WellnessListResponse with _$WellnessListResponse {
 class Result with _$Result {
   const factory Result({
     @JsonKey(name: "notes") required List<Note> notes,
-    @JsonKey(name: "totalElements") required int totalElements,
-    @JsonKey(name: "totalPages") required int totalPages,
   }) = _Result;
 
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
@@ -56,15 +50,15 @@ class Note with _$Note {
 @freezed
 class CareGiver with _$CareGiver {
   const factory CareGiver({
-    @JsonKey(name: "careGiverId") required dynamic careGiverId,
-    @JsonKey(name: "branchPhone") required dynamic branchPhone,
-    @JsonKey(name: "branchEmail") required dynamic branchEmail,
-    @JsonKey(name: "firstName") required String firstName,
-    @JsonKey(name: "lastNameInitial") required String lastNameInitial,
-    @JsonKey(name: "designation") required dynamic designation,
-    @JsonKey(name: "jobTitle") required dynamic jobTitle,
+    @JsonKey(name: "careGiverId") @Default("") String careGiverId,
+    @JsonKey(name: "branchPhone")  @Default("") String branchPhone,
+    @JsonKey(name: "branchEmail")  @Default("") String branchEmail,
+    @JsonKey(name: "firstName")  @Default("") String firstName,
+    @JsonKey(name: "lastNameInitial")  @Default("") String lastNameInitial,
+    @JsonKey(name: "designation")  @Default("") String designation,
+    @JsonKey(name: "jobTitle")  @Default("") String jobTitle,
     @JsonKey(name: "photo") required Photo photo,
-    @JsonKey(name: "languages") required List<Language> languages,
+    @JsonKey(name: "languages") @Default([]) List<Language> languages,
   }) = _CareGiver;
 
   factory CareGiver.fromJson(Map<String, dynamic> json) =>
@@ -74,7 +68,7 @@ class CareGiver with _$CareGiver {
 @freezed
 class Photo with _$Photo {
   const factory Photo({
-    @JsonKey(name: "link") required String link,
+    @JsonKey(name: "link") @Default("") String link,
   }) = _Photo;
 
   factory Photo.fromJson(Map<String, String> json) => _$PhotoFromJson(json);
@@ -83,7 +77,7 @@ class Photo with _$Photo {
 @freezed
 class Language with _$Language {
   const factory Language({
-    @JsonKey(name: "displayName") required String displayName,
+    @JsonKey(name: "displayName") @Default("") String displayName,
   }) = _Language;
 
   factory Language.fromJson(Map<String, String> json) =>
