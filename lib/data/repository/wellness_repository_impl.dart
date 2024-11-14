@@ -26,12 +26,15 @@ class WellnessRepositoryImpl
     String startDate,
     String endDate,
   ) async {
+    // final wellnessListResponse = await callApi<List<WellnessListResponse>>(
+    //     () => _wellnessApiService.getWellnessStatusList(
+    //           startDate,
+    //           endDate,
+    //           clientId,
+    //         ));
+
     final wellnessListResponse = await callApi<List<WellnessListResponse>>(
-        () => _wellnessApiService.getWellnessStatusList(
-              startDate,
-              endDate,
-              clientId,
-            ));
+            () => _wellnessApiService.getWellnessStatusListMockData());
     // final wellnessList = await Isolate.run(
     //   () => _mapToWellnessModel(
     //     wellnessListResponse[0].notes,

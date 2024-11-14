@@ -13,7 +13,9 @@ class _WellnessApi implements WellnessApi {
     this._dio, {
     this.baseUrl,
     this.errorLogger,
-  });
+  }) {
+    baseUrl ??= 'https://run.mocky.io/v3/';
+  }
 
   final Dio _dio;
 
@@ -42,6 +44,42 @@ class _WellnessApi implements WellnessApi {
         .compose(
           _dio.options,
           '/clients/${clientId}/wellnessStatus',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<WellnessListResponse> _value;
+    try {
+      _value = await compute(
+        deserializeWellnessListResponseList,
+        _result.data!.cast<Map<String, dynamic>>(),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<List<WellnessListResponse>> getWellnessStatusListMockData() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<WellnessListResponse>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '2745d307-e217-40d8-9ea2-431d850f91e1',
           queryParameters: queryParameters,
           data: _data,
         )

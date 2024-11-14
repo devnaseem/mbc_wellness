@@ -15,6 +15,7 @@ final wellnessApiProvider = Provider<WellnessApi>((ref) {
 
 @RestApi(
   parser: Parser.FlutterCompute,
+    baseUrl: "https://run.mocky.io/v3/"
 )
 abstract class WellnessApi {
   factory WellnessApi(Dio dio) => _WellnessApi(dio);
@@ -25,4 +26,7 @@ abstract class WellnessApi {
     @Query('endDate') String endDate,
     @Path('clientId') String clientId,
   );
+
+  @GET('2745d307-e217-40d8-9ea2-431d850f91e1')
+  Future<List<WellnessListResponse>> getWellnessStatusListMockData();
 }
