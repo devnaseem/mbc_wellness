@@ -37,8 +37,7 @@ _$NoteImpl _$$NoteImplFromJson(Map<String, dynamic> json) => _$NoteImpl(
       createdTime: json['createdTime'] as String,
       noteDescription: json['noteDescription'] as String,
       noteType: json['noteType'] as String,
-      careGiver: CareGiver.fromJson(json['careGiver'] as Map<String, dynamic>),
-      procuraVisitId: json['procuraVisitId'] as String,
+      procuraVisitId: json['procuraVisitId'] as String?,
     );
 
 Map<String, dynamic> _$$NoteImplToJson(_$NoteImpl instance) =>
@@ -46,20 +45,18 @@ Map<String, dynamic> _$$NoteImplToJson(_$NoteImpl instance) =>
       'createdTime': instance.createdTime,
       'noteDescription': instance.noteDescription,
       'noteType': instance.noteType,
-      'careGiver': instance.careGiver,
       'procuraVisitId': instance.procuraVisitId,
     };
 
 _$CareGiverImpl _$$CareGiverImplFromJson(Map<String, dynamic> json) =>
     _$CareGiverImpl(
-      careGiverId: json['careGiverId'] as String? ?? "",
-      branchPhone: json['branchPhone'] as String? ?? "",
-      branchEmail: json['branchEmail'] as String? ?? "",
-      firstName: json['firstName'] as String? ?? "",
-      lastNameInitial: json['lastNameInitial'] as String? ?? "",
-      designation: json['designation'] as String? ?? "",
-      jobTitle: json['jobTitle'] as String? ?? "",
-      photo: Photo.fromJson(Map<String, String>.from(json['photo'] as Map)),
+      careGiverId: json['careGiverId'] as String?,
+      branchPhone: json['branchPhone'] as String?,
+      branchEmail: json['branchEmail'] as String?,
+      firstName: json['firstName'] as String?,
+      lastNameInitial: json['lastNameInitial'] as String?,
+      designation: json['designation'] as String?,
+      jobTitle: json['jobTitle'] as String?,
       languages: (json['languages'] as List<dynamic>?)
               ?.map(
                   (e) => Language.fromJson(Map<String, String>.from(e as Map)))
@@ -76,7 +73,6 @@ Map<String, dynamic> _$$CareGiverImplToJson(_$CareGiverImpl instance) =>
       'lastNameInitial': instance.lastNameInitial,
       'designation': instance.designation,
       'jobTitle': instance.jobTitle,
-      'photo': instance.photo,
       'languages': instance.languages,
     };
 
@@ -91,7 +87,7 @@ Map<String, dynamic> _$$PhotoImplToJson(_$PhotoImpl instance) =>
 
 _$LanguageImpl _$$LanguageImplFromJson(Map<String, dynamic> json) =>
     _$LanguageImpl(
-      displayName: json['displayName'] as String? ?? "",
+      displayName: json['displayName'] as String?,
     );
 
 Map<String, dynamic> _$$LanguageImplToJson(_$LanguageImpl instance) =>

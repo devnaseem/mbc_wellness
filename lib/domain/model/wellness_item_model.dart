@@ -16,13 +16,13 @@ class WellnessItemModel with _$WellnessItemModel {
 @freezed
 class CareGiverModel with _$CareGiverModel {
   const factory CareGiverModel({
-    required dynamic careGiverId,
-    required dynamic branchPhone,
-    required dynamic branchEmail,
+    required String careGiverId,
+    required String branchPhone,
+    required String branchEmail,
     required String firstName,
     required String lastNameInitial,
-    required dynamic designation,
-    required dynamic jobTitle,
+    required String designation,
+    required String jobTitle,
     required PhotoModel photo,
     required List<LanguageModel> languages,
   }) = _CareGiverModel;

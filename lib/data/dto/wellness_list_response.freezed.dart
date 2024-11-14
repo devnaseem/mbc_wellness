@@ -361,10 +361,8 @@ mixin _$Note {
   String get noteDescription => throw _privateConstructorUsedError;
   @JsonKey(name: "noteType")
   String get noteType => throw _privateConstructorUsedError;
-  @JsonKey(name: "careGiver")
-  CareGiver get careGiver => throw _privateConstructorUsedError;
   @JsonKey(name: "procuraVisitId")
-  String get procuraVisitId => throw _privateConstructorUsedError;
+  String? get procuraVisitId => throw _privateConstructorUsedError;
 
   /// Serializes this Note to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -384,10 +382,7 @@ abstract class $NoteCopyWith<$Res> {
       {@JsonKey(name: "createdTime") String createdTime,
       @JsonKey(name: "noteDescription") String noteDescription,
       @JsonKey(name: "noteType") String noteType,
-      @JsonKey(name: "careGiver") CareGiver careGiver,
-      @JsonKey(name: "procuraVisitId") String procuraVisitId});
-
-  $CareGiverCopyWith<$Res> get careGiver;
+      @JsonKey(name: "procuraVisitId") String? procuraVisitId});
 }
 
 /// @nodoc
@@ -408,8 +403,7 @@ class _$NoteCopyWithImpl<$Res, $Val extends Note>
     Object? createdTime = null,
     Object? noteDescription = null,
     Object? noteType = null,
-    Object? careGiver = null,
-    Object? procuraVisitId = null,
+    Object? procuraVisitId = freezed,
   }) {
     return _then(_value.copyWith(
       createdTime: null == createdTime
@@ -424,25 +418,11 @@ class _$NoteCopyWithImpl<$Res, $Val extends Note>
           ? _value.noteType
           : noteType // ignore: cast_nullable_to_non_nullable
               as String,
-      careGiver: null == careGiver
-          ? _value.careGiver
-          : careGiver // ignore: cast_nullable_to_non_nullable
-              as CareGiver,
-      procuraVisitId: null == procuraVisitId
+      procuraVisitId: freezed == procuraVisitId
           ? _value.procuraVisitId
           : procuraVisitId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of Note
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CareGiverCopyWith<$Res> get careGiver {
-    return $CareGiverCopyWith<$Res>(_value.careGiver, (value) {
-      return _then(_value.copyWith(careGiver: value) as $Val);
-    });
   }
 }
 
@@ -457,11 +437,7 @@ abstract class _$$NoteImplCopyWith<$Res> implements $NoteCopyWith<$Res> {
       {@JsonKey(name: "createdTime") String createdTime,
       @JsonKey(name: "noteDescription") String noteDescription,
       @JsonKey(name: "noteType") String noteType,
-      @JsonKey(name: "careGiver") CareGiver careGiver,
-      @JsonKey(name: "procuraVisitId") String procuraVisitId});
-
-  @override
-  $CareGiverCopyWith<$Res> get careGiver;
+      @JsonKey(name: "procuraVisitId") String? procuraVisitId});
 }
 
 /// @nodoc
@@ -479,8 +455,7 @@ class __$$NoteImplCopyWithImpl<$Res>
     Object? createdTime = null,
     Object? noteDescription = null,
     Object? noteType = null,
-    Object? careGiver = null,
-    Object? procuraVisitId = null,
+    Object? procuraVisitId = freezed,
   }) {
     return _then(_$NoteImpl(
       createdTime: null == createdTime
@@ -495,14 +470,10 @@ class __$$NoteImplCopyWithImpl<$Res>
           ? _value.noteType
           : noteType // ignore: cast_nullable_to_non_nullable
               as String,
-      careGiver: null == careGiver
-          ? _value.careGiver
-          : careGiver // ignore: cast_nullable_to_non_nullable
-              as CareGiver,
-      procuraVisitId: null == procuraVisitId
+      procuraVisitId: freezed == procuraVisitId
           ? _value.procuraVisitId
           : procuraVisitId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -514,8 +485,7 @@ class _$NoteImpl implements _Note {
       {@JsonKey(name: "createdTime") required this.createdTime,
       @JsonKey(name: "noteDescription") required this.noteDescription,
       @JsonKey(name: "noteType") required this.noteType,
-      @JsonKey(name: "careGiver") required this.careGiver,
-      @JsonKey(name: "procuraVisitId") required this.procuraVisitId});
+      @JsonKey(name: "procuraVisitId") this.procuraVisitId});
 
   factory _$NoteImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoteImplFromJson(json);
@@ -530,15 +500,12 @@ class _$NoteImpl implements _Note {
   @JsonKey(name: "noteType")
   final String noteType;
   @override
-  @JsonKey(name: "careGiver")
-  final CareGiver careGiver;
-  @override
   @JsonKey(name: "procuraVisitId")
-  final String procuraVisitId;
+  final String? procuraVisitId;
 
   @override
   String toString() {
-    return 'Note(createdTime: $createdTime, noteDescription: $noteDescription, noteType: $noteType, careGiver: $careGiver, procuraVisitId: $procuraVisitId)';
+    return 'Note(createdTime: $createdTime, noteDescription: $noteDescription, noteType: $noteType, procuraVisitId: $procuraVisitId)';
   }
 
   @override
@@ -552,16 +519,14 @@ class _$NoteImpl implements _Note {
                 other.noteDescription == noteDescription) &&
             (identical(other.noteType, noteType) ||
                 other.noteType == noteType) &&
-            (identical(other.careGiver, careGiver) ||
-                other.careGiver == careGiver) &&
             (identical(other.procuraVisitId, procuraVisitId) ||
                 other.procuraVisitId == procuraVisitId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, createdTime, noteDescription,
-      noteType, careGiver, procuraVisitId);
+  int get hashCode => Object.hash(
+      runtimeType, createdTime, noteDescription, noteType, procuraVisitId);
 
   /// Create a copy of Note
   /// with the given fields replaced by the non-null parameter values.
@@ -584,9 +549,8 @@ abstract class _Note implements Note {
       {@JsonKey(name: "createdTime") required final String createdTime,
       @JsonKey(name: "noteDescription") required final String noteDescription,
       @JsonKey(name: "noteType") required final String noteType,
-      @JsonKey(name: "careGiver") required final CareGiver careGiver,
       @JsonKey(name: "procuraVisitId")
-      required final String procuraVisitId}) = _$NoteImpl;
+      final String? procuraVisitId}) = _$NoteImpl;
 
   factory _Note.fromJson(Map<String, dynamic> json) = _$NoteImpl.fromJson;
 
@@ -600,11 +564,8 @@ abstract class _Note implements Note {
   @JsonKey(name: "noteType")
   String get noteType;
   @override
-  @JsonKey(name: "careGiver")
-  CareGiver get careGiver;
-  @override
   @JsonKey(name: "procuraVisitId")
-  String get procuraVisitId;
+  String? get procuraVisitId;
 
   /// Create a copy of Note
   /// with the given fields replaced by the non-null parameter values.
@@ -621,21 +582,19 @@ CareGiver _$CareGiverFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CareGiver {
   @JsonKey(name: "careGiverId")
-  String get careGiverId => throw _privateConstructorUsedError;
+  String? get careGiverId => throw _privateConstructorUsedError;
   @JsonKey(name: "branchPhone")
-  String get branchPhone => throw _privateConstructorUsedError;
+  String? get branchPhone => throw _privateConstructorUsedError;
   @JsonKey(name: "branchEmail")
-  String get branchEmail => throw _privateConstructorUsedError;
+  String? get branchEmail => throw _privateConstructorUsedError;
   @JsonKey(name: "firstName")
-  String get firstName => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: "lastNameInitial")
-  String get lastNameInitial => throw _privateConstructorUsedError;
+  String? get lastNameInitial => throw _privateConstructorUsedError;
   @JsonKey(name: "designation")
-  String get designation => throw _privateConstructorUsedError;
+  String? get designation => throw _privateConstructorUsedError;
   @JsonKey(name: "jobTitle")
-  String get jobTitle => throw _privateConstructorUsedError;
-  @JsonKey(name: "photo")
-  Photo get photo => throw _privateConstructorUsedError;
+  String? get jobTitle => throw _privateConstructorUsedError;
   @JsonKey(name: "languages")
   List<Language> get languages => throw _privateConstructorUsedError;
 
@@ -655,17 +614,14 @@ abstract class $CareGiverCopyWith<$Res> {
       _$CareGiverCopyWithImpl<$Res, CareGiver>;
   @useResult
   $Res call(
-      {@JsonKey(name: "careGiverId") String careGiverId,
-      @JsonKey(name: "branchPhone") String branchPhone,
-      @JsonKey(name: "branchEmail") String branchEmail,
-      @JsonKey(name: "firstName") String firstName,
-      @JsonKey(name: "lastNameInitial") String lastNameInitial,
-      @JsonKey(name: "designation") String designation,
-      @JsonKey(name: "jobTitle") String jobTitle,
-      @JsonKey(name: "photo") Photo photo,
+      {@JsonKey(name: "careGiverId") String? careGiverId,
+      @JsonKey(name: "branchPhone") String? branchPhone,
+      @JsonKey(name: "branchEmail") String? branchEmail,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastNameInitial") String? lastNameInitial,
+      @JsonKey(name: "designation") String? designation,
+      @JsonKey(name: "jobTitle") String? jobTitle,
       @JsonKey(name: "languages") List<Language> languages});
-
-  $PhotoCopyWith<$Res> get photo;
 }
 
 /// @nodoc
@@ -683,64 +639,49 @@ class _$CareGiverCopyWithImpl<$Res, $Val extends CareGiver>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = null,
-    Object? branchPhone = null,
-    Object? branchEmail = null,
-    Object? firstName = null,
-    Object? lastNameInitial = null,
-    Object? designation = null,
-    Object? jobTitle = null,
-    Object? photo = null,
+    Object? careGiverId = freezed,
+    Object? branchPhone = freezed,
+    Object? branchEmail = freezed,
+    Object? firstName = freezed,
+    Object? lastNameInitial = freezed,
+    Object? designation = freezed,
+    Object? jobTitle = freezed,
     Object? languages = null,
   }) {
     return _then(_value.copyWith(
-      careGiverId: null == careGiverId
+      careGiverId: freezed == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchPhone: null == branchPhone
+              as String?,
+      branchPhone: freezed == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchEmail: null == branchEmail
+              as String?,
+      branchEmail: freezed == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastNameInitial: null == lastNameInitial
+              as String?,
+      lastNameInitial: freezed == lastNameInitial
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
-              as String,
-      designation: null == designation
+              as String?,
+      designation: freezed == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as String,
-      jobTitle: null == jobTitle
+              as String?,
+      jobTitle: freezed == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo,
+              as String?,
       languages: null == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
               as List<Language>,
     ) as $Val);
-  }
-
-  /// Create a copy of CareGiver
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PhotoCopyWith<$Res> get photo {
-    return $PhotoCopyWith<$Res>(_value.photo, (value) {
-      return _then(_value.copyWith(photo: value) as $Val);
-    });
   }
 }
 
@@ -753,18 +694,14 @@ abstract class _$$CareGiverImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "careGiverId") String careGiverId,
-      @JsonKey(name: "branchPhone") String branchPhone,
-      @JsonKey(name: "branchEmail") String branchEmail,
-      @JsonKey(name: "firstName") String firstName,
-      @JsonKey(name: "lastNameInitial") String lastNameInitial,
-      @JsonKey(name: "designation") String designation,
-      @JsonKey(name: "jobTitle") String jobTitle,
-      @JsonKey(name: "photo") Photo photo,
+      {@JsonKey(name: "careGiverId") String? careGiverId,
+      @JsonKey(name: "branchPhone") String? branchPhone,
+      @JsonKey(name: "branchEmail") String? branchEmail,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastNameInitial") String? lastNameInitial,
+      @JsonKey(name: "designation") String? designation,
+      @JsonKey(name: "jobTitle") String? jobTitle,
       @JsonKey(name: "languages") List<Language> languages});
-
-  @override
-  $PhotoCopyWith<$Res> get photo;
 }
 
 /// @nodoc
@@ -780,49 +717,44 @@ class __$$CareGiverImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = null,
-    Object? branchPhone = null,
-    Object? branchEmail = null,
-    Object? firstName = null,
-    Object? lastNameInitial = null,
-    Object? designation = null,
-    Object? jobTitle = null,
-    Object? photo = null,
+    Object? careGiverId = freezed,
+    Object? branchPhone = freezed,
+    Object? branchEmail = freezed,
+    Object? firstName = freezed,
+    Object? lastNameInitial = freezed,
+    Object? designation = freezed,
+    Object? jobTitle = freezed,
     Object? languages = null,
   }) {
     return _then(_$CareGiverImpl(
-      careGiverId: null == careGiverId
+      careGiverId: freezed == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchPhone: null == branchPhone
+              as String?,
+      branchPhone: freezed == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as String,
-      branchEmail: null == branchEmail
+              as String?,
+      branchEmail: freezed == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastNameInitial: null == lastNameInitial
+              as String?,
+      lastNameInitial: freezed == lastNameInitial
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
-              as String,
-      designation: null == designation
+              as String?,
+      designation: freezed == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as String,
-      jobTitle: null == jobTitle
+              as String?,
+      jobTitle: freezed == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as Photo,
+              as String?,
       languages: null == languages
           ? _value._languages
           : languages // ignore: cast_nullable_to_non_nullable
@@ -835,14 +767,13 @@ class __$$CareGiverImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CareGiverImpl implements _CareGiver {
   const _$CareGiverImpl(
-      {@JsonKey(name: "careGiverId") this.careGiverId = "",
-      @JsonKey(name: "branchPhone") this.branchPhone = "",
-      @JsonKey(name: "branchEmail") this.branchEmail = "",
-      @JsonKey(name: "firstName") this.firstName = "",
-      @JsonKey(name: "lastNameInitial") this.lastNameInitial = "",
-      @JsonKey(name: "designation") this.designation = "",
-      @JsonKey(name: "jobTitle") this.jobTitle = "",
-      @JsonKey(name: "photo") required this.photo,
+      {@JsonKey(name: "careGiverId") this.careGiverId,
+      @JsonKey(name: "branchPhone") this.branchPhone,
+      @JsonKey(name: "branchEmail") this.branchEmail,
+      @JsonKey(name: "firstName") this.firstName,
+      @JsonKey(name: "lastNameInitial") this.lastNameInitial,
+      @JsonKey(name: "designation") this.designation,
+      @JsonKey(name: "jobTitle") this.jobTitle,
       @JsonKey(name: "languages") final List<Language> languages = const []})
       : _languages = languages;
 
@@ -851,28 +782,25 @@ class _$CareGiverImpl implements _CareGiver {
 
   @override
   @JsonKey(name: "careGiverId")
-  final String careGiverId;
+  final String? careGiverId;
   @override
   @JsonKey(name: "branchPhone")
-  final String branchPhone;
+  final String? branchPhone;
   @override
   @JsonKey(name: "branchEmail")
-  final String branchEmail;
+  final String? branchEmail;
   @override
   @JsonKey(name: "firstName")
-  final String firstName;
+  final String? firstName;
   @override
   @JsonKey(name: "lastNameInitial")
-  final String lastNameInitial;
+  final String? lastNameInitial;
   @override
   @JsonKey(name: "designation")
-  final String designation;
+  final String? designation;
   @override
   @JsonKey(name: "jobTitle")
-  final String jobTitle;
-  @override
-  @JsonKey(name: "photo")
-  final Photo photo;
+  final String? jobTitle;
   final List<Language> _languages;
   @override
   @JsonKey(name: "languages")
@@ -884,7 +812,7 @@ class _$CareGiverImpl implements _CareGiver {
 
   @override
   String toString() {
-    return 'CareGiver(careGiverId: $careGiverId, branchPhone: $branchPhone, branchEmail: $branchEmail, firstName: $firstName, lastNameInitial: $lastNameInitial, designation: $designation, jobTitle: $jobTitle, photo: $photo, languages: $languages)';
+    return 'CareGiver(careGiverId: $careGiverId, branchPhone: $branchPhone, branchEmail: $branchEmail, firstName: $firstName, lastNameInitial: $lastNameInitial, designation: $designation, jobTitle: $jobTitle, languages: $languages)';
   }
 
   @override
@@ -906,7 +834,6 @@ class _$CareGiverImpl implements _CareGiver {
                 other.designation == designation) &&
             (identical(other.jobTitle, jobTitle) ||
                 other.jobTitle == jobTitle) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
             const DeepCollectionEquality()
                 .equals(other._languages, _languages));
   }
@@ -922,7 +849,6 @@ class _$CareGiverImpl implements _CareGiver {
       lastNameInitial,
       designation,
       jobTitle,
-      photo,
       const DeepCollectionEquality().hash(_languages));
 
   /// Create a copy of CareGiver
@@ -943,14 +869,13 @@ class _$CareGiverImpl implements _CareGiver {
 
 abstract class _CareGiver implements CareGiver {
   const factory _CareGiver(
-          {@JsonKey(name: "careGiverId") final String careGiverId,
-          @JsonKey(name: "branchPhone") final String branchPhone,
-          @JsonKey(name: "branchEmail") final String branchEmail,
-          @JsonKey(name: "firstName") final String firstName,
-          @JsonKey(name: "lastNameInitial") final String lastNameInitial,
-          @JsonKey(name: "designation") final String designation,
-          @JsonKey(name: "jobTitle") final String jobTitle,
-          @JsonKey(name: "photo") required final Photo photo,
+          {@JsonKey(name: "careGiverId") final String? careGiverId,
+          @JsonKey(name: "branchPhone") final String? branchPhone,
+          @JsonKey(name: "branchEmail") final String? branchEmail,
+          @JsonKey(name: "firstName") final String? firstName,
+          @JsonKey(name: "lastNameInitial") final String? lastNameInitial,
+          @JsonKey(name: "designation") final String? designation,
+          @JsonKey(name: "jobTitle") final String? jobTitle,
           @JsonKey(name: "languages") final List<Language> languages}) =
       _$CareGiverImpl;
 
@@ -959,28 +884,25 @@ abstract class _CareGiver implements CareGiver {
 
   @override
   @JsonKey(name: "careGiverId")
-  String get careGiverId;
+  String? get careGiverId;
   @override
   @JsonKey(name: "branchPhone")
-  String get branchPhone;
+  String? get branchPhone;
   @override
   @JsonKey(name: "branchEmail")
-  String get branchEmail;
+  String? get branchEmail;
   @override
   @JsonKey(name: "firstName")
-  String get firstName;
+  String? get firstName;
   @override
   @JsonKey(name: "lastNameInitial")
-  String get lastNameInitial;
+  String? get lastNameInitial;
   @override
   @JsonKey(name: "designation")
-  String get designation;
+  String? get designation;
   @override
   @JsonKey(name: "jobTitle")
-  String get jobTitle;
-  @override
-  @JsonKey(name: "photo")
-  Photo get photo;
+  String? get jobTitle;
   @override
   @JsonKey(name: "languages")
   List<Language> get languages;
@@ -1000,7 +922,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Photo {
   @JsonKey(name: "link")
-  String get link => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
 
   /// Serializes this Photo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1016,7 +938,7 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
-  $Res call({@JsonKey(name: "link") String link});
+  $Res call({@JsonKey(name: "link") String? link});
 }
 
 /// @nodoc
@@ -1034,13 +956,13 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? link = null,
+    Object? link = freezed,
   }) {
     return _then(_value.copyWith(
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -1052,7 +974,7 @@ abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$$PhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "link") String link});
+  $Res call({@JsonKey(name: "link") String? link});
 }
 
 /// @nodoc
@@ -1068,13 +990,13 @@ class __$$PhotoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? link = null,
+    Object? link = freezed,
   }) {
     return _then(_$PhotoImpl(
-      link: null == link
+      link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1089,7 +1011,7 @@ class _$PhotoImpl implements _Photo {
 
   @override
   @JsonKey(name: "link")
-  final String link;
+  final String? link;
 
   @override
   String toString() {
@@ -1125,14 +1047,14 @@ class _$PhotoImpl implements _Photo {
 }
 
 abstract class _Photo implements Photo {
-  const factory _Photo({@JsonKey(name: "link") final String link}) =
+  const factory _Photo({@JsonKey(name: "link") final String? link}) =
       _$PhotoImpl;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$PhotoImpl.fromJson;
 
   @override
   @JsonKey(name: "link")
-  String get link;
+  String? get link;
 
   /// Create a copy of Photo
   /// with the given fields replaced by the non-null parameter values.
@@ -1149,7 +1071,7 @@ Language _$LanguageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Language {
   @JsonKey(name: "displayName")
-  String get displayName => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
 
   /// Serializes this Language to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1166,7 +1088,7 @@ abstract class $LanguageCopyWith<$Res> {
   factory $LanguageCopyWith(Language value, $Res Function(Language) then) =
       _$LanguageCopyWithImpl<$Res, Language>;
   @useResult
-  $Res call({@JsonKey(name: "displayName") String displayName});
+  $Res call({@JsonKey(name: "displayName") String? displayName});
 }
 
 /// @nodoc
@@ -1184,13 +1106,13 @@ class _$LanguageCopyWithImpl<$Res, $Val extends Language>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? displayName = null,
+    Object? displayName = freezed,
   }) {
     return _then(_value.copyWith(
-      displayName: null == displayName
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -1203,7 +1125,7 @@ abstract class _$$LanguageImplCopyWith<$Res>
       __$$LanguageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "displayName") String displayName});
+  $Res call({@JsonKey(name: "displayName") String? displayName});
 }
 
 /// @nodoc
@@ -1219,13 +1141,13 @@ class __$$LanguageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? displayName = null,
+    Object? displayName = freezed,
   }) {
     return _then(_$LanguageImpl(
-      displayName: null == displayName
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1233,14 +1155,14 @@ class __$$LanguageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LanguageImpl implements _Language {
-  const _$LanguageImpl({@JsonKey(name: "displayName") this.displayName = ""});
+  const _$LanguageImpl({@JsonKey(name: "displayName") this.displayName});
 
   factory _$LanguageImpl.fromJson(Map<String, dynamic> json) =>
       _$$LanguageImplFromJson(json);
 
   @override
   @JsonKey(name: "displayName")
-  final String displayName;
+  final String? displayName;
 
   @override
   String toString() {
@@ -1278,7 +1200,7 @@ class _$LanguageImpl implements _Language {
 
 abstract class _Language implements Language {
   const factory _Language(
-          {@JsonKey(name: "displayName") final String displayName}) =
+          {@JsonKey(name: "displayName") final String? displayName}) =
       _$LanguageImpl;
 
   factory _Language.fromJson(Map<String, dynamic> json) =
@@ -1286,7 +1208,7 @@ abstract class _Language implements Language {
 
   @override
   @JsonKey(name: "displayName")
-  String get displayName;
+  String? get displayName;
 
   /// Create a copy of Language
   /// with the given fields replaced by the non-null parameter values.

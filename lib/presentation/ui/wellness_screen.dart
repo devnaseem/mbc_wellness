@@ -1,7 +1,8 @@
 part of mbc_wellness;
 
 class WellnessScreen extends ConsumerStatefulWidget {
-  const WellnessScreen({super.key});
+  final String systemId;
+  const WellnessScreen({super.key, required this.systemId});
 
   @override
   ConsumerState<WellnessScreen> createState() => _WellnessScreenState();
@@ -15,7 +16,7 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
       (_) {
         ref
             .read(wellnessViewModelProvider.notifier)
-            .getWellnessStatusList(context.loc?.locale.languageCode ?? 'en');
+            .getWellnessStatusList(context.loc?.locale.languageCode ?? 'en', widget.systemId);
       },
     );
   }
@@ -27,10 +28,17 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar:  AppBar(
+          backgroundColor: ColorConstants.primaryBrandColor,
+          title: const  Text("Wellness Status", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
+        ),
         body:
            wellnessValue.when(
-           loading: () => const Center(child: CircularProgressIndicator()),
-           data: (wellnessList) => WellnessListWidget(wellnessList: wellnessList),
+           loading: () => const WellnessLoadingWidget(),
+           data: (wellnessList) => WellnessListWidget(wellnessList: wellnessList, onTap: (){
+             GoRouter.of(context).go("/wellnessDetails");
+           },),
            error: (error, stackTrace) => Text(error.toString()),
         ),
       ),

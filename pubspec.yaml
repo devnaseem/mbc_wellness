@@ -13,11 +13,11 @@ dependencies:
   mbc_common:
     git:
       url: https://github.com/devnaseem/mbc_common.git
-      ref: e6bad3c58930b409dcf2370cb59cf6fbb5651f92
+      ref: 0d32a738ad8a1804eb242d824eb2e0fd24520db3
   mbc_core:
     git:
       url: https://github.com/devnaseem/mbc_core.git
-      ref: 6e1fd47ff813142a41572d1850a178a4ff6db2d2
+      ref: a3aa1704af13cf6d6c4e85cda5e30db8952a267e
 
 
 dev_dependencies:
@@ -43,3 +43,6 @@ dependency_overrides:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - web/

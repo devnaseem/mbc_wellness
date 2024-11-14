@@ -250,13 +250,13 @@ abstract class _WellnessItemModel implements WellnessItemModel {
 
 /// @nodoc
 mixin _$CareGiverModel {
-  dynamic get careGiverId => throw _privateConstructorUsedError;
-  dynamic get branchPhone => throw _privateConstructorUsedError;
-  dynamic get branchEmail => throw _privateConstructorUsedError;
+  String get careGiverId => throw _privateConstructorUsedError;
+  String get branchPhone => throw _privateConstructorUsedError;
+  String get branchEmail => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastNameInitial => throw _privateConstructorUsedError;
-  dynamic get designation => throw _privateConstructorUsedError;
-  dynamic get jobTitle => throw _privateConstructorUsedError;
+  String get designation => throw _privateConstructorUsedError;
+  String get jobTitle => throw _privateConstructorUsedError;
   PhotoModel get photo => throw _privateConstructorUsedError;
   List<LanguageModel> get languages => throw _privateConstructorUsedError;
 
@@ -274,13 +274,13 @@ abstract class $CareGiverModelCopyWith<$Res> {
       _$CareGiverModelCopyWithImpl<$Res, CareGiverModel>;
   @useResult
   $Res call(
-      {dynamic careGiverId,
-      dynamic branchPhone,
-      dynamic branchEmail,
+      {String careGiverId,
+      String branchPhone,
+      String branchEmail,
       String firstName,
       String lastNameInitial,
-      dynamic designation,
-      dynamic jobTitle,
+      String designation,
+      String jobTitle,
       PhotoModel photo,
       List<LanguageModel> languages});
 
@@ -302,29 +302,29 @@ class _$CareGiverModelCopyWithImpl<$Res, $Val extends CareGiverModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = freezed,
-    Object? branchPhone = freezed,
-    Object? branchEmail = freezed,
+    Object? careGiverId = null,
+    Object? branchPhone = null,
+    Object? branchEmail = null,
     Object? firstName = null,
     Object? lastNameInitial = null,
-    Object? designation = freezed,
-    Object? jobTitle = freezed,
+    Object? designation = null,
+    Object? jobTitle = null,
     Object? photo = null,
     Object? languages = null,
   }) {
     return _then(_value.copyWith(
-      careGiverId: freezed == careGiverId
+      careGiverId: null == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchPhone: freezed == branchPhone
+              as String,
+      branchPhone: null == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchEmail: freezed == branchEmail
+              as String,
+      branchEmail: null == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -333,14 +333,14 @@ class _$CareGiverModelCopyWithImpl<$Res, $Val extends CareGiverModel>
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
               as String,
-      designation: freezed == designation
+      designation: null == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      jobTitle: freezed == jobTitle
+              as String,
+      jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -372,13 +372,13 @@ abstract class _$$CareGiverModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {dynamic careGiverId,
-      dynamic branchPhone,
-      dynamic branchEmail,
+      {String careGiverId,
+      String branchPhone,
+      String branchEmail,
       String firstName,
       String lastNameInitial,
-      dynamic designation,
-      dynamic jobTitle,
+      String designation,
+      String jobTitle,
       PhotoModel photo,
       List<LanguageModel> languages});
 
@@ -399,29 +399,29 @@ class __$$CareGiverModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? careGiverId = freezed,
-    Object? branchPhone = freezed,
-    Object? branchEmail = freezed,
+    Object? careGiverId = null,
+    Object? branchPhone = null,
+    Object? branchEmail = null,
     Object? firstName = null,
     Object? lastNameInitial = null,
-    Object? designation = freezed,
-    Object? jobTitle = freezed,
+    Object? designation = null,
+    Object? jobTitle = null,
     Object? photo = null,
     Object? languages = null,
   }) {
     return _then(_$CareGiverModelImpl(
-      careGiverId: freezed == careGiverId
+      careGiverId: null == careGiverId
           ? _value.careGiverId
           : careGiverId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchPhone: freezed == branchPhone
+              as String,
+      branchPhone: null == branchPhone
           ? _value.branchPhone
           : branchPhone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      branchEmail: freezed == branchEmail
+              as String,
+      branchEmail: null == branchEmail
           ? _value.branchEmail
           : branchEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -430,14 +430,14 @@ class __$$CareGiverModelImplCopyWithImpl<$Res>
           ? _value.lastNameInitial
           : lastNameInitial // ignore: cast_nullable_to_non_nullable
               as String,
-      designation: freezed == designation
+      designation: null == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      jobTitle: freezed == jobTitle
+              as String,
+      jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       photo: null == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -466,19 +466,19 @@ class _$CareGiverModelImpl implements _CareGiverModel {
       : _languages = languages;
 
   @override
-  final dynamic careGiverId;
+  final String careGiverId;
   @override
-  final dynamic branchPhone;
+  final String branchPhone;
   @override
-  final dynamic branchEmail;
+  final String branchEmail;
   @override
   final String firstName;
   @override
   final String lastNameInitial;
   @override
-  final dynamic designation;
+  final String designation;
   @override
-  final dynamic jobTitle;
+  final String jobTitle;
   @override
   final PhotoModel photo;
   final List<LanguageModel> _languages;
@@ -499,19 +499,20 @@ class _$CareGiverModelImpl implements _CareGiverModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CareGiverModelImpl &&
-            const DeepCollectionEquality()
-                .equals(other.careGiverId, careGiverId) &&
-            const DeepCollectionEquality()
-                .equals(other.branchPhone, branchPhone) &&
-            const DeepCollectionEquality()
-                .equals(other.branchEmail, branchEmail) &&
+            (identical(other.careGiverId, careGiverId) ||
+                other.careGiverId == careGiverId) &&
+            (identical(other.branchPhone, branchPhone) ||
+                other.branchPhone == branchPhone) &&
+            (identical(other.branchEmail, branchEmail) ||
+                other.branchEmail == branchEmail) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastNameInitial, lastNameInitial) ||
                 other.lastNameInitial == lastNameInitial) &&
-            const DeepCollectionEquality()
-                .equals(other.designation, designation) &&
-            const DeepCollectionEquality().equals(other.jobTitle, jobTitle) &&
+            (identical(other.designation, designation) ||
+                other.designation == designation) &&
+            (identical(other.jobTitle, jobTitle) ||
+                other.jobTitle == jobTitle) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             const DeepCollectionEquality()
                 .equals(other._languages, _languages));
@@ -520,13 +521,13 @@ class _$CareGiverModelImpl implements _CareGiverModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(careGiverId),
-      const DeepCollectionEquality().hash(branchPhone),
-      const DeepCollectionEquality().hash(branchEmail),
+      careGiverId,
+      branchPhone,
+      branchEmail,
       firstName,
       lastNameInitial,
-      const DeepCollectionEquality().hash(designation),
-      const DeepCollectionEquality().hash(jobTitle),
+      designation,
+      jobTitle,
       photo,
       const DeepCollectionEquality().hash(_languages));
 
@@ -542,30 +543,30 @@ class _$CareGiverModelImpl implements _CareGiverModel {
 
 abstract class _CareGiverModel implements CareGiverModel {
   const factory _CareGiverModel(
-      {required final dynamic careGiverId,
-      required final dynamic branchPhone,
-      required final dynamic branchEmail,
+      {required final String careGiverId,
+      required final String branchPhone,
+      required final String branchEmail,
       required final String firstName,
       required final String lastNameInitial,
-      required final dynamic designation,
-      required final dynamic jobTitle,
+      required final String designation,
+      required final String jobTitle,
       required final PhotoModel photo,
       required final List<LanguageModel> languages}) = _$CareGiverModelImpl;
 
   @override
-  dynamic get careGiverId;
+  String get careGiverId;
   @override
-  dynamic get branchPhone;
+  String get branchPhone;
   @override
-  dynamic get branchEmail;
+  String get branchEmail;
   @override
   String get firstName;
   @override
   String get lastNameInitial;
   @override
-  dynamic get designation;
+  String get designation;
   @override
-  dynamic get jobTitle;
+  String get jobTitle;
   @override
   PhotoModel get photo;
   @override

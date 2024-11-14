@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mbc_wellness/domain/usecase/get_wellness_list_usecase.dart';
 import 'package:mbc_wellness/presentation/state/wellness_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,12 +13,12 @@ class WellnessViewModel extends _$WellnessViewModel {
     return const WellnessState();
   }
 
-  void getWellnessStatusList(String languageCode) async {
+  void getWellnessStatusList(String languageCode, String systemId) async {
     state = state.copyWith(
       wellnessList: const AsyncLoading(),
     );
 
-    DateTime dateTime = DateTime.now().toUtc().subtract(Duration(days: 30));
+    DateTime dateTime = DateTime.now().toUtc().subtract(Duration(days: 300));
     DateTime dateTimeToday = DateTime.now().toUtc();
     String fromDate = DateFormat('yyyy-MM-dd', languageCode).format(dateTime);
     String toDate = DateFormat('yyyy-MM-dd', languageCode)
@@ -25,13 +26,16 @@ class WellnessViewModel extends _$WellnessViewModel {
 
     final wellnessResult = await ref
         .read(getWellnessListUseCaseProvider)
-        .call("0000791121", fromDate, toDate);
+        .call(systemId, fromDate, toDate);
 
     wellnessResult.when((products) {
       state = state.copyWith(
         wellnessList: AsyncValue.data(products),
       );
     }, (error) {
+      print(error);
+      print(error.stackTrace);
+
       state = state.copyWith(
         wellnessList: AsyncError(error, error.stackTrace),
       );

@@ -6,7 +6,7 @@ part of 'wellness_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$wellnessViewModelHash() => r'27a5ea53622802d1782e5b5e6d7a01431568ca35';
+String _$wellnessViewModelHash() => r'5cce781c5b7ac4eafe8716fb676197eb4686b60b';
 
 /// See also [WellnessViewModel].
 @ProviderFor(WellnessViewModel)

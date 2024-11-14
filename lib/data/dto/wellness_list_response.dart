@@ -40,8 +40,7 @@ class Note with _$Note {
     @JsonKey(name: "createdTime") required String createdTime,
     @JsonKey(name: "noteDescription") required String noteDescription,
     @JsonKey(name: "noteType") required String noteType,
-    @JsonKey(name: "careGiver") required CareGiver careGiver,
-    @JsonKey(name: "procuraVisitId") required String procuraVisitId,
+    @JsonKey(name: "procuraVisitId")  String? procuraVisitId,
   }) = _Note;
 
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
@@ -50,14 +49,13 @@ class Note with _$Note {
 @freezed
 class CareGiver with _$CareGiver {
   const factory CareGiver({
-    @JsonKey(name: "careGiverId") @Default("") String careGiverId,
-    @JsonKey(name: "branchPhone")  @Default("") String branchPhone,
-    @JsonKey(name: "branchEmail")  @Default("") String branchEmail,
-    @JsonKey(name: "firstName")  @Default("") String firstName,
-    @JsonKey(name: "lastNameInitial")  @Default("") String lastNameInitial,
-    @JsonKey(name: "designation")  @Default("") String designation,
-    @JsonKey(name: "jobTitle")  @Default("") String jobTitle,
-    @JsonKey(name: "photo") required Photo photo,
+    @JsonKey(name: "careGiverId") String? careGiverId,
+    @JsonKey(name: "branchPhone") String? branchPhone,
+    @JsonKey(name: "branchEmail") String? branchEmail,
+    @JsonKey(name: "firstName")  String? firstName,
+    @JsonKey(name: "lastNameInitial") String? lastNameInitial,
+    @JsonKey(name: "designation") String? designation,
+    @JsonKey(name: "jobTitle")  String? jobTitle,
     @JsonKey(name: "languages") @Default([]) List<Language> languages,
   }) = _CareGiver;
 
@@ -68,7 +66,7 @@ class CareGiver with _$CareGiver {
 @freezed
 class Photo with _$Photo {
   const factory Photo({
-    @JsonKey(name: "link") @Default("") String link,
+    @JsonKey(name: "link") @Default("") String? link,
   }) = _Photo;
 
   factory Photo.fromJson(Map<String, String> json) => _$PhotoFromJson(json);
@@ -77,7 +75,7 @@ class Photo with _$Photo {
 @freezed
 class Language with _$Language {
   const factory Language({
-    @JsonKey(name: "displayName") @Default("") String displayName,
+    @JsonKey(name: "displayName") String? displayName,
   }) = _Language;
 
   factory Language.fromJson(Map<String, String> json) =>
