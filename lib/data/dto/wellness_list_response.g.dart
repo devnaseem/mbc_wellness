@@ -9,28 +9,29 @@ part of 'wellness_list_response.dart';
 _$WellnessListResponseImpl _$$WellnessListResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$WellnessListResponseImpl(
+      wellnessList: (json['wellnessList'] as List<dynamic>)
+          .map((e) => WellnessList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$WellnessListResponseImplToJson(
+        _$WellnessListResponseImpl instance) =>
+    <String, dynamic>{
+      'wellnessList': instance.wellnessList,
+    };
+
+_$WellnessListImpl _$$WellnessListImplFromJson(Map<String, dynamic> json) =>
+    _$WellnessListImpl(
       notes: (json['notes'] as List<dynamic>)
           .map((e) => Note.fromJson(e as Map<String, dynamic>))
           .toList(),
       system: json['system'] as String,
     );
 
-Map<String, dynamic> _$$WellnessListResponseImplToJson(
-        _$WellnessListResponseImpl instance) =>
+Map<String, dynamic> _$$WellnessListImplToJson(_$WellnessListImpl instance) =>
     <String, dynamic>{
       'notes': instance.notes,
       'system': instance.system,
-    };
-
-_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
-      notes: (json['notes'] as List<dynamic>)
-          .map((e) => Note.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
-    <String, dynamic>{
-      'notes': instance.notes,
     };
 
 _$NoteImpl _$$NoteImplFromJson(Map<String, dynamic> json) => _$NoteImpl(

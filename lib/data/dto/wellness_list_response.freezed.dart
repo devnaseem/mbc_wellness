@@ -20,8 +20,8 @@ WellnessListResponse _$WellnessListResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WellnessListResponse {
-  List<Note> get notes => throw _privateConstructorUsedError;
-  String get system => throw _privateConstructorUsedError;
+  @JsonKey(name: "wellnessList")
+  List<WellnessList> get wellnessList => throw _privateConstructorUsedError;
 
   /// Serializes this WellnessListResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $WellnessListResponseCopyWith<$Res> {
           $Res Function(WellnessListResponse) then) =
       _$WellnessListResponseCopyWithImpl<$Res, WellnessListResponse>;
   @useResult
-  $Res call({List<Note> notes, String system});
+  $Res call({@JsonKey(name: "wellnessList") List<WellnessList> wellnessList});
 }
 
 /// @nodoc
@@ -58,18 +58,13 @@ class _$WellnessListResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notes = null,
-    Object? system = null,
+    Object? wellnessList = null,
   }) {
     return _then(_value.copyWith(
-      notes: null == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<Note>,
-      system: null == system
-          ? _value.system
-          : system // ignore: cast_nullable_to_non_nullable
-              as String,
+      wellnessList: null == wellnessList
+          ? _value.wellnessList
+          : wellnessList // ignore: cast_nullable_to_non_nullable
+              as List<WellnessList>,
     ) as $Val);
   }
 }
@@ -82,7 +77,7 @@ abstract class _$$WellnessListResponseImplCopyWith<$Res>
       __$$WellnessListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Note> notes, String system});
+  $Res call({@JsonKey(name: "wellnessList") List<WellnessList> wellnessList});
 }
 
 /// @nodoc
@@ -98,18 +93,13 @@ class __$$WellnessListResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notes = null,
-    Object? system = null,
+    Object? wellnessList = null,
   }) {
     return _then(_$WellnessListResponseImpl(
-      notes: null == notes
-          ? _value._notes
-          : notes // ignore: cast_nullable_to_non_nullable
-              as List<Note>,
-      system: null == system
-          ? _value.system
-          : system // ignore: cast_nullable_to_non_nullable
-              as String,
+      wellnessList: null == wellnessList
+          ? _value._wellnessList
+          : wellnessList // ignore: cast_nullable_to_non_nullable
+              as List<WellnessList>,
     ));
   }
 }
@@ -118,26 +108,25 @@ class __$$WellnessListResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WellnessListResponseImpl implements _WellnessListResponse {
   const _$WellnessListResponseImpl(
-      {required final List<Note> notes, required this.system})
-      : _notes = notes;
+      {@JsonKey(name: "wellnessList")
+      required final List<WellnessList> wellnessList})
+      : _wellnessList = wellnessList;
 
   factory _$WellnessListResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WellnessListResponseImplFromJson(json);
 
-  final List<Note> _notes;
+  final List<WellnessList> _wellnessList;
   @override
-  List<Note> get notes {
-    if (_notes is EqualUnmodifiableListView) return _notes;
+  @JsonKey(name: "wellnessList")
+  List<WellnessList> get wellnessList {
+    if (_wellnessList is EqualUnmodifiableListView) return _wellnessList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_notes);
+    return EqualUnmodifiableListView(_wellnessList);
   }
 
   @override
-  final String system;
-
-  @override
   String toString() {
-    return 'WellnessListResponse(notes: $notes, system: $system)';
+    return 'WellnessListResponse(wellnessList: $wellnessList)';
   }
 
   @override
@@ -145,14 +134,14 @@ class _$WellnessListResponseImpl implements _WellnessListResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WellnessListResponseImpl &&
-            const DeepCollectionEquality().equals(other._notes, _notes) &&
-            (identical(other.system, system) || other.system == system));
+            const DeepCollectionEquality()
+                .equals(other._wellnessList, _wellnessList));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_notes), system);
+      runtimeType, const DeepCollectionEquality().hash(_wellnessList));
 
   /// Create a copy of WellnessListResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -174,16 +163,16 @@ class _$WellnessListResponseImpl implements _WellnessListResponse {
 
 abstract class _WellnessListResponse implements WellnessListResponse {
   const factory _WellnessListResponse(
-      {required final List<Note> notes,
-      required final String system}) = _$WellnessListResponseImpl;
+          {@JsonKey(name: "wellnessList")
+          required final List<WellnessList> wellnessList}) =
+      _$WellnessListResponseImpl;
 
   factory _WellnessListResponse.fromJson(Map<String, dynamic> json) =
       _$WellnessListResponseImpl.fromJson;
 
   @override
-  List<Note> get notes;
-  @override
-  String get system;
+  @JsonKey(name: "wellnessList")
+  List<WellnessList> get wellnessList;
 
   /// Create a copy of WellnessListResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -193,100 +182,121 @@ abstract class _WellnessListResponse implements WellnessListResponse {
       get copyWith => throw _privateConstructorUsedError;
 }
 
-Result _$ResultFromJson(Map<String, dynamic> json) {
-  return _Result.fromJson(json);
+WellnessList _$WellnessListFromJson(Map<String, dynamic> json) {
+  return _WellnessList.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Result {
+mixin _$WellnessList {
   @JsonKey(name: "notes")
   List<Note> get notes => throw _privateConstructorUsedError;
+  @JsonKey(name: "system")
+  String get system => throw _privateConstructorUsedError;
 
-  /// Serializes this Result to a JSON map.
+  /// Serializes this WellnessList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Result
+  /// Create a copy of WellnessList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
+  $WellnessListCopyWith<WellnessList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ResultCopyWith<$Res> {
-  factory $ResultCopyWith(Result value, $Res Function(Result) then) =
-      _$ResultCopyWithImpl<$Res, Result>;
+abstract class $WellnessListCopyWith<$Res> {
+  factory $WellnessListCopyWith(
+          WellnessList value, $Res Function(WellnessList) then) =
+      _$WellnessListCopyWithImpl<$Res, WellnessList>;
   @useResult
-  $Res call({@JsonKey(name: "notes") List<Note> notes});
+  $Res call(
+      {@JsonKey(name: "notes") List<Note> notes,
+      @JsonKey(name: "system") String system});
 }
 
 /// @nodoc
-class _$ResultCopyWithImpl<$Res, $Val extends Result>
-    implements $ResultCopyWith<$Res> {
-  _$ResultCopyWithImpl(this._value, this._then);
+class _$WellnessListCopyWithImpl<$Res, $Val extends WellnessList>
+    implements $WellnessListCopyWith<$Res> {
+  _$WellnessListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Result
+  /// Create a copy of WellnessList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? notes = null,
+    Object? system = null,
   }) {
     return _then(_value.copyWith(
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
+      system: null == system
+          ? _value.system
+          : system // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
-  factory _$$ResultImplCopyWith(
-          _$ResultImpl value, $Res Function(_$ResultImpl) then) =
-      __$$ResultImplCopyWithImpl<$Res>;
+abstract class _$$WellnessListImplCopyWith<$Res>
+    implements $WellnessListCopyWith<$Res> {
+  factory _$$WellnessListImplCopyWith(
+          _$WellnessListImpl value, $Res Function(_$WellnessListImpl) then) =
+      __$$WellnessListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "notes") List<Note> notes});
+  $Res call(
+      {@JsonKey(name: "notes") List<Note> notes,
+      @JsonKey(name: "system") String system});
 }
 
 /// @nodoc
-class __$$ResultImplCopyWithImpl<$Res>
-    extends _$ResultCopyWithImpl<$Res, _$ResultImpl>
-    implements _$$ResultImplCopyWith<$Res> {
-  __$$ResultImplCopyWithImpl(
-      _$ResultImpl _value, $Res Function(_$ResultImpl) _then)
+class __$$WellnessListImplCopyWithImpl<$Res>
+    extends _$WellnessListCopyWithImpl<$Res, _$WellnessListImpl>
+    implements _$$WellnessListImplCopyWith<$Res> {
+  __$$WellnessListImplCopyWithImpl(
+      _$WellnessListImpl _value, $Res Function(_$WellnessListImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Result
+  /// Create a copy of WellnessList
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? notes = null,
+    Object? system = null,
   }) {
-    return _then(_$ResultImpl(
+    return _then(_$WellnessListImpl(
       notes: null == notes
           ? _value._notes
           : notes // ignore: cast_nullable_to_non_nullable
               as List<Note>,
+      system: null == system
+          ? _value.system
+          : system // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ResultImpl implements _Result {
-  const _$ResultImpl({@JsonKey(name: "notes") required final List<Note> notes})
+class _$WellnessListImpl implements _WellnessList {
+  const _$WellnessListImpl(
+      {@JsonKey(name: "notes") required final List<Note> notes,
+      @JsonKey(name: "system") required this.system})
       : _notes = notes;
 
-  factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResultImplFromJson(json);
+  factory _$WellnessListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WellnessListImplFromJson(json);
 
   final List<Note> _notes;
   @override
@@ -298,54 +308,65 @@ class _$ResultImpl implements _Result {
   }
 
   @override
+  @JsonKey(name: "system")
+  final String system;
+
+  @override
   String toString() {
-    return 'Result(notes: $notes)';
+    return 'WellnessList(notes: $notes, system: $system)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResultImpl &&
-            const DeepCollectionEquality().equals(other._notes, _notes));
+            other is _$WellnessListImpl &&
+            const DeepCollectionEquality().equals(other._notes, _notes) &&
+            (identical(other.system, system) || other.system == system));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_notes));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_notes), system);
 
-  /// Create a copy of Result
+  /// Create a copy of WellnessList
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
-      __$$ResultImplCopyWithImpl<_$ResultImpl>(this, _$identity);
+  _$$WellnessListImplCopyWith<_$WellnessListImpl> get copyWith =>
+      __$$WellnessListImplCopyWithImpl<_$WellnessListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ResultImplToJson(
+    return _$$WellnessListImplToJson(
       this,
     );
   }
 }
 
-abstract class _Result implements Result {
-  const factory _Result(
-      {@JsonKey(name: "notes") required final List<Note> notes}) = _$ResultImpl;
+abstract class _WellnessList implements WellnessList {
+  const factory _WellnessList(
+          {@JsonKey(name: "notes") required final List<Note> notes,
+          @JsonKey(name: "system") required final String system}) =
+      _$WellnessListImpl;
 
-  factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
+  factory _WellnessList.fromJson(Map<String, dynamic> json) =
+      _$WellnessListImpl.fromJson;
 
   @override
   @JsonKey(name: "notes")
   List<Note> get notes;
+  @override
+  @JsonKey(name: "system")
+  String get system;
 
-  /// Create a copy of Result
+  /// Create a copy of WellnessList
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
+  _$$WellnessListImplCopyWith<_$WellnessListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

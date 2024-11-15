@@ -33,7 +33,7 @@ class WellnessRepositoryImpl
     //           clientId,
     //         ));
 
-    final wellnessListResponse = await callApi<List<WellnessListResponse>>(
+    final wellnessListResponse = await callApi<WellnessListResponse>(
             () => _wellnessApiService.getWellnessStatusListMockData());
     // final wellnessList = await Isolate.run(
     //   () => _mapToWellnessModel(
@@ -42,7 +42,7 @@ class WellnessRepositoryImpl
     // );
 
     final wellnessList = _mapToWellnessModel(
-        wellnessListResponse[0].notes,
+        wellnessListResponse.wellnessList[0].notes,
     );
     return wellnessList;
   }
