@@ -29,7 +29,11 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar:  AppBar(
+        appBar: kIsWeb? NavBarWidget(
+          onBackPressed : (){
+            html.window.dispatchEvent(html.CustomEvent('back_pressed'));
+          }
+        ):  AppBar(
           backgroundColor: ColorConstants.primaryBrandColor,
           title: const  Text("Wellness Status", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         ),

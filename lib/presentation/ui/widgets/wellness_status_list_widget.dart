@@ -104,7 +104,7 @@ class _HoverableCardState extends State<HoverableCard> {
                             height: 8,
                           ),
                           Text(
-                            "${widget.wellnessItem.noteDescription}",
+                            widget.wellnessItem.noteDescription,
                             style: TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ],

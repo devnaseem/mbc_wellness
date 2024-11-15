@@ -19,7 +19,11 @@ class _WellnessDetailsScreenState extends ConsumerState<WellnessDetailsScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar:  AppBar(
+        appBar: kIsWeb? NavBarWidget(
+          onBackPressed: (){
+            GoRouter.of(context).go("/");
+          } ,
+        ):  AppBar(
           backgroundColor: ColorConstants.primaryBrandColor,
           leading: IconButton(onPressed: (){
             GoRouter.of(context).go("/");
