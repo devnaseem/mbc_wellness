@@ -48,6 +48,12 @@ class _WellnessRootAppState extends ConsumerState<WellnessRootApp> {
             systemId: '8971660004',
           ),
         ),
+        GoRoute(
+          path: '/wellnessDetails',
+          builder: (context, state) => const WellnessDetailsScreen(
+            systemId:  '0000662212',
+          ),
+        ),
         // Add more routes if necessary
       ],
     );
