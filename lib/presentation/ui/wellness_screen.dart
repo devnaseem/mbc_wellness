@@ -30,6 +30,8 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: kIsWeb? NavBarWidget(
+          title: "Wellness History",
+          subtitle: "Back to Dashboard",
           onBackPressed : (){
             html.window.dispatchEvent(html.CustomEvent('back_pressed'));
           }

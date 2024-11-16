@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mbc_wellness/main.dart';
-import 'package:mbc_wellness/mbc_wellness.dart';
 
 void main() {
   runApp(const MyApp());

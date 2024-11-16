@@ -20,6 +20,8 @@ class _WellnessDetailsScreenState extends ConsumerState<WellnessDetailsScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: kIsWeb? NavBarWidget(
+          title: "Wellness Detail",
+          subtitle: "Back to Wellness Detail",
           onBackPressed: (){
             GoRouter.of(context).go("/");
           } ,

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:mbc_wellness/domain/usecase/get_wellness_list_usecase.dart';
 import 'package:mbc_wellness/presentation/state/wellness_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
