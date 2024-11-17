@@ -1,4 +1,3 @@
-import 'dart:isolate';
 
 import 'package:mbc_common/mbc_common.dart';
 import 'package:mbc_wellness/data/api/wellness_api.dart';
@@ -6,6 +5,7 @@ import 'package:mbc_wellness/data/dto/wellness_list_response.dart';
 import 'package:mbc_wellness/data/repository/iwelness_repository.dart';
 import 'package:mbc_wellness/domain/model/wellness_item_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter/foundation.dart';
 part 'wellness_repository_impl.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -35,45 +35,38 @@ class WellnessRepositoryImpl
 
     final wellnessListResponse = await callApi<WellnessListResponse>(
             () => _wellnessApiService.getWellnessStatusListMockData());
-    // final wellnessList = await Isolate.run(
-    //   () => _mapToWellnessModel(
-    //     wellnessListResponse[0].notes,
-    //   ),
-    // );
+    final wellnessList = await compute(mapToWellnessModel, wellnessListResponse.wellnessList[0].notes);
 
-    final wellnessList = _mapToWellnessModel(
-        wellnessListResponse.wellnessList[0].notes,
-    );
     return wellnessList;
   }
+}
 
-  List<WellnessItemModel> _mapToWellnessModel(
+List<WellnessItemModel> mapToWellnessModel(
     List<Note> data,
-  ) {
-    final result = data
-        .map(
-          (e) => WellnessItemModel(
-            createdTime: e.createdTime,
-            noteDescription: e.noteDescription,
-            noteType: e.noteType,
-            careGiver: const CareGiverModel(
-              careGiverId: "",//e.careGiver!=null?e.careGiver?.careGiverId ?? "": "",
-              branchPhone: "",//e.careGiver!=null?e.careGiver?.branchPhone ?? "": "",
-              branchEmail: "",//e.careGiver!=null?e.careGiver?.branchEmail ?? "": "",
-              firstName: "",//e.careGiver!=null?e.careGiver?.firstName ??"": "",
-              lastNameInitial: "",//e.careGiver!=null?e.careGiver?.lastNameInitial ?? "": "",
-              designation: "",//e.careGiver!=null?e.careGiver?.designation ?? "": "",
-              jobTitle: "",//e.careGiver!=null? e.careGiver?.jobTitle ?? "" : "",
-              photo: const PhotoModel(link: ""),
-              languages: [],// e.careGiver!=null? e.careGiver!.languages
-                  //.map((e) => LanguageModel(displayName: e.displayName?? ""))
-                 // .toList():[],
-            ),
-            procuraVisitId: e.procuraVisitId ?? "",
-          ),
-        )
-        .toList();
+    ) {
+  final result = data
+      .map(
+        (e) => WellnessItemModel(
+      createdTime: e.createdTime,
+      noteDescription: e.noteDescription,
+      noteType: e.noteType,
+      careGiver: const CareGiverModel(
+        careGiverId: "",//e.careGiver!=null?e.careGiver?.careGiverId ?? "": "",
+        branchPhone: "",//e.careGiver!=null?e.careGiver?.branchPhone ?? "": "",
+        branchEmail: "",//e.careGiver!=null?e.careGiver?.branchEmail ?? "": "",
+        firstName: "",//e.careGiver!=null?e.careGiver?.firstName ??"": "",
+        lastNameInitial: "",//e.careGiver!=null?e.careGiver?.lastNameInitial ?? "": "",
+        designation: "",//e.careGiver!=null?e.careGiver?.designation ?? "": "",
+        jobTitle: "",//e.careGiver!=null? e.careGiver?.jobTitle ?? "" : "",
+        photo: PhotoModel(link: ""),
+        languages: [],// e.careGiver!=null? e.careGiver!.languages
+        //.map((e) => LanguageModel(displayName: e.displayName?? ""))
+        // .toList():[],
+      ),
+      procuraVisitId: e.procuraVisitId ?? "",
+    ),
+  )
+      .toList();
 
-    return result;
-  }
+  return result;
 }

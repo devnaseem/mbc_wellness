@@ -1,5 +1,6 @@
 part of mbc_wellness;
 
+
 class WellnessScreen extends ConsumerStatefulWidget {
   final String systemId;
   const WellnessScreen({super.key, required this.systemId});
@@ -33,7 +34,9 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
           title: "Wellness History",
           subtitle: "Back to Dashboard",
           onBackPressed : (){
-            html.window.dispatchEvent(html.CustomEvent('back_pressed'));
+            if(kIsWeb) {
+              dispatchBackPressedEvent();
+            }
           }
         ):  AppBar(
           backgroundColor: ColorConstants.primaryBrandColor,
