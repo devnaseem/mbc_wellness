@@ -7,7 +7,7 @@ part of 'wellness_repository_impl.dart';
 // **************************************************************************
 
 String _$wellnessRepositoryImplHash() =>
-    r'28be599b58b29a95897a08addccd6a7a44dba75a';
+    r'1d32515997ebe4a36ee768961dee7813297372c9';
 
 /// See also [wellnessRepositoryImpl].
 @ProviderFor(wellnessRepositoryImpl)

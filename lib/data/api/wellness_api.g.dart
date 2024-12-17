@@ -24,19 +24,26 @@ class _WellnessApi implements WellnessApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<WellnessListResponse> getWellnessStatusListMockData() async {
+  Future<List<WellnessListResponse>> getWellnessStatusList(
+    String startDate,
+    String endDate,
+    String clientId,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'startDate': startDate,
+      r'endDate': endDate,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<WellnessListResponse>(Options(
+    final _options = _setStreamType<List<WellnessListResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'wellnessList',
+          '/clients/${clientId}/wellnessStatus',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -45,10 +52,13 @@ class _WellnessApi implements WellnessApi {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late WellnessListResponse _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<WellnessListResponse> _value;
     try {
-      _value = await compute(deserializeWellnessListResponse, _result.data!);
+      _value = await compute(
+        deserializeWellnessListResponseList,
+        _result.data!.cast<Map<String, dynamic>>(),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -1,10 +1,9 @@
 // lib/main_web.dart (entry point for web)
-import 'dart:convert';
-import 'dart:html' as html;
-import 'package:js/js_util.dart' as js_util;
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mbc_wellness/main_web_entry.dart';
 import 'mbc_wellness.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +12,6 @@ import 'package:mbc_core/mbc_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class WellnessAppWeb extends StatelessWidget {
-
   final String? accessToken;
   final String? identityToken;
   final String? systemId;
@@ -26,7 +24,6 @@ class WellnessAppWeb extends StatelessWidget {
     required this.systemId,
     required this.env,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +39,6 @@ class WellnessAppWeb extends StatelessWidget {
 }
 
 class WellnessRootAppWeb extends ConsumerStatefulWidget {
-
-
   final String? accessToken;
   final String? identityToken;
   final String? systemId;
@@ -58,10 +53,12 @@ class WellnessRootAppWeb extends ConsumerStatefulWidget {
   });
 
   @override
-  _WellnessRootAppWebState createState() => _WellnessRootAppWebState();
+  WellnessRootAppWebState createState() => WellnessRootAppWebState();
 }
 
-class _WellnessRootAppWebState extends ConsumerState<WellnessRootAppWeb> {
+class WellnessRootAppWebState extends ConsumerState<WellnessRootAppWeb> {
+  late final StreamSubscription<InitialConfig> _configSubscription;
+
   late final GoRouter _router;
   @override
   void initState() {
@@ -86,13 +83,29 @@ class _WellnessRootAppWebState extends ConsumerState<WellnessRootAppWeb> {
       ],
     );
 
-    // Set the flavor
-    ref.read(flavorProvider.notifier).state = widget.env;
+    // Initial setup for providers
+    _initializeProviders(widget.env, widget.accessToken, widget.identityToken);
 
-    // Store access token synchronously
+    // Listen to FlutterDataStore updates
+    _configSubscription =
+        FlutterDataStore.instance.configStream.listen((config) {
+          setState(() {
+            // Update providers on config change
+            _initializeProviders(
+              _mapStringToFlavor(config.env),
+              config.accessToken,
+              config.identityToken,
+            );
+          });
+        });
+  }
+
+  void _initializeProviders(
+      Flavor flavor, String? accessToken, String? identityToken) {
+    ref.read(flavorProvider.notifier).state = flavor;
     ref
         .read(tokenServiceProvider(ref.read(networkServiceProvider)))
-        .storeAccessToken(widget.accessToken!, "", widget.identityToken!);
+        .storeAccessToken(accessToken ?? '', "", identityToken ?? '');
   }
 
 
@@ -114,12 +127,26 @@ class _WellnessRootAppWebState extends ConsumerState<WellnessRootAppWeb> {
       ],
       localeResolutionCallback: (locale, supportedLocales) {
         for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale!.languageCode && supportedLocale.countryCode == locale.countryCode) {
+          if (supportedLocale.languageCode == locale!.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
             return supportedLocale;
           }
         }
         return supportedLocales.first;
       },
     );
+  }
+
+  Flavor _mapStringToFlavor(String env) {
+    switch (env) {
+      case 'dev':
+        return Flavor.dev;
+      case 'staging':
+        return Flavor.staging;
+      case 'prod':
+        return Flavor.prod;
+      default:
+        return Flavor.dev;
+    }
   }
 }

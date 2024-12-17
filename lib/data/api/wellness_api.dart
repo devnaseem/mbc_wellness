@@ -14,19 +14,15 @@ final wellnessApiProvider = Provider<WellnessApi>((ref) {
 });
 
 @RestApi(
-  parser: Parser.FlutterCompute,
-    baseUrl: "https://nascode-338705814149.asia-south2.run.app/api/v1/"
-)
+    parser: Parser.FlutterCompute,
+    baseUrl: "https://nascode-338705814149.asia-south2.run.app/api/v1/")
 abstract class WellnessApi {
   factory WellnessApi(Dio dio) => _WellnessApi(dio);
 
-  // @GET('/clients/{clientId}/wellnessStatus')
-  // Future<List<WellnessListResponse>> getWellnessStatusList(
-  //   @Query('startDate') String startDate,
-  //   @Query('endDate') String endDate,
-  //   @Path('clientId') String clientId,
-  // );
-
-  @GET('wellnessList')
-  Future<WellnessListResponse> getWellnessStatusListMockData();
+  @GET('/clients/{clientId}/wellnessStatus')
+  Future<List<WellnessListResponse>> getWellnessStatusList(
+    @Query('startDate') String startDate,
+    @Query('endDate') String endDate,
+    @Path('clientId') String clientId,
+  );
 }

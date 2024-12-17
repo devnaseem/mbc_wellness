@@ -6,15 +6,9 @@
     <base href="/">
     <meta name="description" content="A Flutter web app.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include the Flutter.js script -->
     <script src="flutter.js" defer></script>
 </head>
 <body>
-<script>
-    window.addEventListener('load', function(ev) {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('flutter_service_worker.js');
-      }
-    });
-</script>
 </body>
 </html>

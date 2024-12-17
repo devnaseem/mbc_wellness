@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WellnessItemModel {
-  String get createdTime => throw _privateConstructorUsedError;
+  DateTime get createdTime => throw _privateConstructorUsedError;
   String get noteDescription => throw _privateConstructorUsedError;
   String get noteType => throw _privateConstructorUsedError;
   CareGiverModel get careGiver => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $WellnessItemModelCopyWith<$Res> {
       _$WellnessItemModelCopyWithImpl<$Res, WellnessItemModel>;
   @useResult
   $Res call(
-      {String createdTime,
+      {DateTime createdTime,
       String noteDescription,
       String noteType,
       CareGiverModel careGiver,
@@ -70,7 +70,7 @@ class _$WellnessItemModelCopyWithImpl<$Res, $Val extends WellnessItemModel>
       createdTime: null == createdTime
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       noteDescription: null == noteDescription
           ? _value.noteDescription
           : noteDescription // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$WellnessItemModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String createdTime,
+      {DateTime createdTime,
       String noteDescription,
       String noteType,
       CareGiverModel careGiver,
@@ -143,7 +143,7 @@ class __$$WellnessItemModelImplCopyWithImpl<$Res>
       createdTime: null == createdTime
           ? _value.createdTime
           : createdTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       noteDescription: null == noteDescription
           ? _value.noteDescription
           : noteDescription // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ class _$WellnessItemModelImpl implements _WellnessItemModel {
       required this.procuraVisitId});
 
   @override
-  final String createdTime;
+  final DateTime createdTime;
   @override
   final String noteDescription;
   @override
@@ -223,14 +223,14 @@ class _$WellnessItemModelImpl implements _WellnessItemModel {
 
 abstract class _WellnessItemModel implements WellnessItemModel {
   const factory _WellnessItemModel(
-      {required final String createdTime,
+      {required final DateTime createdTime,
       required final String noteDescription,
       required final String noteType,
       required final CareGiverModel careGiver,
       required final String procuraVisitId}) = _$WellnessItemModelImpl;
 
   @override
-  String get createdTime;
+  DateTime get createdTime;
   @override
   String get noteDescription;
   @override

@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:mbc_core/mbc_core.dart';
 import 'dart:js_util' as js_util;
 import 'dart:convert';
+import 'package:js/js.dart';
+
 
 import 'package:mbc_wellness/main_web.dart';
 
@@ -20,7 +23,9 @@ class MyApp extends StatelessWidget {
   static InitialConfig getInitialConfig() {
     try {
       // Use dart:js_util to access the global JS variable
-      final dynamic data = js_util.getProperty(html.window, 'flutterInitialData');
+      final dynamic data =
+          js_util.getProperty(html.window, 'flutterInitialData');
+      print("data $data");
       if (data != null && data is Map) {
         // If data is a Map, convert it to InitialConfig
         return InitialConfig.fromMap(Map<String, dynamic>.from(data));
@@ -38,6 +43,36 @@ class MyApp extends StatelessWidget {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    // Set up JS interop for dynamic updates
+    js_util.setProperty(
+      html.window,
+      'flutterUpdateData',
+      allowInterop((dynamic updatedData) {
+        try {
+          final parsedData = jsonDecode(updatedData) as Map<String, dynamic>;
+          FlutterDataStore.instance
+              .updateConfig(InitialConfig.fromMap(parsedData));
+        } catch (e) {
+          print('Error updating Flutter data: $e');
+        }
+      }),
+    );
+
+    return StreamBuilder<InitialConfig>(
+      stream: FlutterDataStore.instance.configStream,
+      builder: (context, snapshot) {
+        final initialConfig = snapshot.data ?? InitialConfig.defaultConfig();
+        return WellnessAppWeb(
+          accessToken: initialConfig.accessToken,
+          identityToken: initialConfig.identityToken,
+          systemId: initialConfig.systemId,
+          env: _mapStringToFlavor(initialConfig.env),
+        );
+      },
+    );
+  }
 
   Flavor _mapStringToFlavor(String env) {
     switch (env) {
@@ -50,17 +85,6 @@ class MyApp extends StatelessWidget {
       default:
         return Flavor.dev;
     }
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return WellnessAppWeb(
-      accessToken: initialConfig.accessToken,
-      identityToken: initialConfig.identityToken,
-      systemId: initialConfig.systemId,
-      env: _mapStringToFlavor(initialConfig.systemId),
-    );
   }
 }
 
@@ -93,5 +117,19 @@ class InitialConfig {
       systemId: 'default_system_id',
       env: 'dev',
     );
+  }
+}
+
+// Singleton to manage Flutter data updates
+class FlutterDataStore {
+  FlutterDataStore._privateConstructor();
+  static final FlutterDataStore instance =
+  FlutterDataStore._privateConstructor();
+
+  final _configController = StreamController<InitialConfig>.broadcast();
+  Stream<InitialConfig> get configStream => _configController.stream;
+
+  void updateConfig(InitialConfig config) {
+    _configController.sink.add(config);
   }
 }

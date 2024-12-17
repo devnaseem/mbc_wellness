@@ -1,6 +1,5 @@
 part of mbc_wellness;
 
-
 class WellnessScreen extends ConsumerStatefulWidget {
   final String systemId;
   const WellnessScreen({super.key, required this.systemId});
@@ -15,12 +14,13 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        ref
-            .read(wellnessViewModelProvider.notifier)
-            .getWellnessStatusList(context.loc?.locale.languageCode ?? 'en', widget.systemId);
+        ref.read(wellnessViewModelProvider.notifier).getWellnessStatusList(
+            context.loc?.locale.languageCode ?? 'en', widget.systemId);
       },
     );
   }
+
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,25 +30,41 @@ class _WellnessScreenState extends ConsumerState<WellnessScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: kIsWeb? NavBarWidget(
-          title: "Wellness History",
-          subtitle: "Back to Dashboard",
-          onBackPressed : (){
-            if(kIsWeb) {
-              dispatchBackPressedEvent();
-            }
-          }
-        ):  AppBar(
-          backgroundColor: ColorConstants.primaryBrandColor,
-          title: const  Text("Wellness Status", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
-        ),
-        body:
-           wellnessValue.when(
-           loading: () => const WellnessLoadingWidget(),
-           data: (wellnessList) => WellnessListWidget(wellnessList: wellnessList, onTap: (){
-             GoRouter.of(context).go("/wellnessDetails");
-           },),
-           error: (error, stackTrace) => Text(error.toString()),
+        appBar: kIsWeb
+            ? NavBarWidget(
+                title: "Wellness History",
+                subtitle: "Back to Dashboard",
+                onBackPressed: () {
+                  if (kIsWeb) {
+                    dispatchBackPressedEvent();
+                  }
+                })
+            : WellnessAppBarWidget(onSeeTodayPressed: () {
+                scrollController.animateTo(
+                  0.0, // Offset to scroll to
+                  duration:
+                      const Duration(milliseconds: 500), // Animation duration
+                  curve: Curves.easeInOut, // Animation curve
+                );
+              }),
+        body: wellnessValue.when(
+          loading: () => const WellnessLoadingWidget(),
+          data: (wellnessList) => WellnessListWidget(
+            wellnessList: wellnessList,
+            scrollController: scrollController,
+            onTap: (index) {
+              if (kIsWeb) {
+                GoRouter.of(context).go("/wellnessDetails");
+              } else {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => WellnessDetailsScreen(
+                          systemId: "",
+                          index: index,
+                        )));
+              }
+            },
+          ),
+          error: (error, stackTrace) => Text(error.toString()),
         ),
       ),
     );

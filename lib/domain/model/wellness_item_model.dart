@@ -5,7 +5,7 @@ part 'wellness_item_model.freezed.dart';
 @freezed
 class WellnessItemModel with _$WellnessItemModel {
   const factory WellnessItemModel({
-    required String createdTime,
+    required DateTime createdTime,
     required String noteDescription,
     required String noteType,
     required CareGiverModel careGiver,
